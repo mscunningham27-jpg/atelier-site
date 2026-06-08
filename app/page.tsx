@@ -6,7 +6,7 @@ const FEATURED = {
   headline: 'The Hymn Written in a Shipwreck',
   dek: 'What Horatio Spafford sent across the water in 1873 — and why we still cannot stop singing it.',
   readTime: '8 min read',
-  slug: '/archive/hymn-written-in-a-shipwreck',
+  slug: '/articles/hymn-written-in-a-shipwreck',
 }
 
 const ASSIGNMENT_ARTICLES = [
@@ -14,13 +14,13 @@ const ASSIGNMENT_ARTICLES = [
     headline: 'Is It Vain to Want My Work to Be Beautiful?',
     dek: 'On aesthetic hunger, calling, and the one question most Christian artists are afraid to ask out loud.',
     readTime: '6 min',
-    slug: '/assignment/is-it-vain-to-want-beauty',
+    slug: '/articles/is-it-vain-to-want-my-work-to-be-beautiful',
   },
   {
     headline: 'The Work Before the Work',
     dek: 'Why formation matters more than output — and how the saints understood something we keep forgetting.',
     readTime: '5 min',
-    slug: '/assignment/the-work-before-the-work',
+    slug: '/articles/the-work-before-the-work',
   },
 ]
 
@@ -29,13 +29,13 @@ const ALTAR_ARTICLES = [
     headline: "When the Prayer Doesn't Come",
     dek: 'On silence, lament, and the psalmist who kept writing anyway.',
     readTime: '5 min',
-    slug: '/altar/when-the-prayer-doesnt-come',
+    slug: '/articles/when-the-prayer-doesnt-come',
   },
   {
     headline: 'Disappointed With God',
     dek: "Philip Yancey asked the question in 1988. It hasn't gotten easier to answer. Here's where we land.",
     readTime: '7 min',
-    slug: '/altar/disappointed-with-god',
+    slug: '/articles/disappointed-with-god',
   },
 ]
 
@@ -68,11 +68,11 @@ const ATELIER_LETTERS = [
 ]
 
 const SECTIONS = [
-  { name: 'The Assignment', path: '/assignment' },
-  { name: 'The Craft',      path: '/craft' },
-  { name: 'The Archive',    path: '/archive' },
-  { name: 'The Altar',      path: '/altar' },
-  { name: 'The Guild',      path: '/guild' },
+  { name: 'The Assignment', path: '/the-assignment' },
+  { name: 'The Craft',      path: '/the-craft' },
+  { name: 'The Archive',    path: '/the-archive' },
+  { name: 'The Altar',      path: '/the-altar' },
+  { name: 'The Guild',      path: '/the-guild' },
 ]
 
 export default function HomePage() {
@@ -138,43 +138,42 @@ export default function HomePage() {
           </div>
         </section>
 
-        <SectionRule label="Latest" />
-
-        {/* ── Room grid — fixed 2 cols, no ghost divider ────────── */}
-        <section style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          border: '0.5px solid var(--border)',
-          borderRadius: '2px',
-          overflow: 'hidden',
-          margin: '32px 0 56px',
-        }}>
-          {/* The Assignment */}
-          <div style={{ background: 'var(--room-assignment)', padding: 'clamp(28px, 3.5vw, 48px)' }}>
-            <RoomHeader
-              label="The Assignment"
-              ornament="✦"
-              description="Theology of creativity & calling"
-              accentColor="var(--accent-assignment)"
-              fontVar="var(--font-assignment)"
-            />
-            {ASSIGNMENT_ARTICLES.map((a, i) => (
-              <ArticleCard key={i} article={a} fontVar="var(--font-assignment)" isLast={i === ASSIGNMENT_ARTICLES.length - 1} />
-            ))}
+        {/* ── Two-room section grid ─────────────────────────────── */}
+        <section style={{ marginBottom: '56px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
+            <div className="divider-line" />
+            <span className="rule-ornament">· From the Rooms ·</span>
+            <div className="divider-line" />
           </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', border: '0.5px solid var(--border)', borderRadius: '2px', overflow: 'hidden' }}>
 
-          {/* The Altar */}
-          <div style={{ background: 'var(--room-altar)', padding: 'clamp(28px, 3.5vw, 48px)', borderLeft: '0.5px solid var(--border)', borderTop: 'none' }}>
-            <RoomHeader
-              label="The Altar"
-              ornament="†"
-              description="Prayer, Scripture & the inner life"
-              accentColor="var(--accent-altar)"
-              fontVar="var(--font-altar)"
-            />
-            {ALTAR_ARTICLES.map((a, i) => (
-              <ArticleCard key={i} article={a} fontVar="var(--font-altar)" isLast={i === ALTAR_ARTICLES.length - 1} />
-            ))}
+            {/* The Assignment */}
+            <div style={{ background: 'var(--room-assignment)', padding: 'clamp(28px, 3.5vw, 48px)', borderRight: '0.5px solid var(--border)' }}>
+              <RoomHeader
+                label="The Assignment"
+                ornament="✦"
+                description="Theology of creativity & calling"
+                accentColor="var(--accent-assignment)"
+                fontVar="var(--font-assignment)"
+              />
+              {ASSIGNMENT_ARTICLES.map((a, i) => (
+                <ArticleCard key={i} article={a} fontVar="var(--font-assignment)" isLast={i === ASSIGNMENT_ARTICLES.length - 1} />
+              ))}
+            </div>
+
+            {/* The Altar */}
+            <div style={{ background: 'var(--room-altar)', padding: 'clamp(28px, 3.5vw, 48px)', borderLeft: '0.5px solid var(--border)', borderTop: 'none' }}>
+              <RoomHeader
+                label="The Altar"
+                ornament="†"
+                description="Prayer, Scripture & the inner life"
+                accentColor="var(--accent-altar)"
+                fontVar="var(--font-altar)"
+              />
+              {ALTAR_ARTICLES.map((a, i) => (
+                <ArticleCard key={i} article={a} fontVar="var(--font-altar)" isLast={i === ALTAR_ARTICLES.length - 1} />
+              ))}
+            </div>
           </div>
         </section>
 
@@ -196,7 +195,7 @@ export default function HomePage() {
         </section>
 
         {/* ── Weekly Offering ──────────────────────────────────── */}
-        <section style={{ border: '0.5px solid var(--border)', borderRadius: '2px', padding: 'clamp(36px, 5vw, 64px) clamp(24px, 4vw, 56px)', textAlign: 'center', marginBottom: '64px', position: 'relative', overflow: 'hidden', background: 'var(--parchment-mid)' }}>
+        <section id="newsletter" style={{ border: '0.5px solid var(--border)', borderRadius: '2px', padding: 'clamp(36px, 5vw, 64px) clamp(24px, 4vw, 56px)', textAlign: 'center', marginBottom: '64px', position: 'relative', overflow: 'hidden', background: 'var(--parchment-mid)' }}>
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontFamily: 'var(--font-serif)', fontSize: 'clamp(80px, 14vw, 200px)', fontWeight: 600, fontStyle: 'italic', color: 'rgba(26,18,8,0.03)', whiteSpace: 'nowrap', userSelect: 'none', pointerEvents: 'none' }}>Offering</div>
           <div style={{ position: 'relative' }}>
             <p className="rule-ornament" style={{ marginBottom: '14px' }}>The Weekly Offering</p>
@@ -217,22 +216,11 @@ export default function HomePage() {
   )
 }
 
-function SectionRule({ label }: { label: string }) {
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-      <div className="divider-line" />
-      <span className="rule-ornament">· {label} ·</span>
-      <div className="divider-line" />
-    </div>
-  )
-}
-
 function RoomHeader({ label, ornament, description, accentColor, fontVar }: {
   label: string; ornament: string; description: string; accentColor: string; fontVar: string
 }) {
   return (
     <div style={{ marginBottom: '32px' }}>
-      {/* Large section name in its characteristic font */}
       <div style={{ marginBottom: '8px' }}>
         <span style={{ fontFamily: fontVar, fontSize: 'clamp(10px, 1.2vw, 14px)', letterSpacing: '0.06em', color: accentColor, opacity: 0.8, display: 'block', marginBottom: '4px' }}>
           {ornament}
