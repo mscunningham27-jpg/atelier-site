@@ -65,6 +65,8 @@ const SECTIONS = [
   { name: 'The Guild',      path: '/the-guild' },
 ]
 
+export const dynamicParams = true
+
 export async function generateStaticParams() {
   return getAllSlugs().map(slug => ({ slug }))
 }
@@ -285,3 +287,4 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     </div>
   )
 }
+x
