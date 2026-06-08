@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Atelier & The Altar — Design System ────────────────────────── */
+/* ── Atelier & The Altar v2 — Design System ─────────────────────── */
 
 :root {
-  /* Brand palette — from the HearthLight trailer */
+  /* Base palette */
   --ember:        #0A0806;
   --hearthgold:   #C8820A;
   --warmgold:     #E8C060;
@@ -16,20 +16,26 @@
   --border:       rgba(200, 130, 10, 0.18);
   --border-strong: rgba(200, 130, 10, 0.32);
 
+  /* Section room accents — each section has its own quiet color */
+  --room-archive:    rgba(200, 130, 10, 0.07);    /* amber warmth — historical */
+  --room-altar:      rgba(90, 110, 150, 0.06);    /* cool blue — liturgical */
+  --room-assignment: rgba(110, 130, 100, 0.05);   /* sage — theological */
+  --room-craft:      rgba(160, 110, 70, 0.06);    /* terracotta — tactile */
+  --room-guild:      rgba(200, 160, 80, 0.05);    /* warm — human */
+
+  --accent-archive:    #C8820A;
+  --accent-altar:      #8090B0;
+  --accent-assignment: #8A9E78;
+  --accent-craft:      #B07848;
+  --accent-guild:      #C8A060;
+
   /* Typography */
   --font-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
   --font-sans:  var(--font-jost), 'Jost', system-ui, sans-serif;
 }
 
-/* ── Reset & Base ────────────────────────────────────────────────── */
-
-*, *::before, *::after {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   background-color: var(--ember);
@@ -41,11 +47,19 @@ body {
   margin: 0;
 }
 
-a {
-  color: inherit;
+a { color: inherit; }
+
+/* ── Masthead collage letters ────────────────────────────────────── */
+
+.masthead-letter {
+  font-family: var(--font-serif);
+  display: inline-block;
+  line-height: 1;
+  color: var(--warmgold);
+  transition: color 0.3s;
 }
 
-/* ── Atelier Components ──────────────────────────────────────────── */
+/* ── Shared components ───────────────────────────────────────────── */
 
 .section-pill {
   font-family: var(--font-sans);
@@ -75,6 +89,64 @@ a {
   white-space: nowrap;
 }
 
+/* ── Navigation ──────────────────────────────────────────────────── */
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--midgold);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 0.5px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.nav-link:hover {
+  color: var(--warmgold);
+  border-bottom-color: var(--border);
+}
+
+/* ── Buttons & CTAs ──────────────────────────────────────────────── */
+
+.read-btn {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hearthgold);
+  text-decoration: none;
+  border: 0.5px solid var(--border);
+  padding: 6px 16px;
+  border-radius: 20px;
+  transition: border-color 0.2s, background 0.2s;
+  display: inline-block;
+}
+.read-btn:hover {
+  border-color: var(--hearthgold);
+  background: rgba(200, 130, 10, 0.08);
+}
+
+/* ── Article links ───────────────────────────────────────────────── */
+
+.article-link { text-decoration: none; display: block; }
+.article-link:hover .article-headline { color: var(--hearthgold); }
+.article-headline { transition: color 0.2s; }
+
+/* ── Scene cards ─────────────────────────────────────────────────── */
+
+.scene-card {
+  text-decoration: none;
+  display: block;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 2px;
+  padding: 18px;
+  transition: border-color 0.2s;
+}
+.scene-card:hover { border-color: var(--border-strong); }
+
 /* ── Inputs ──────────────────────────────────────────────────────── */
 
 input[type='email'] {
@@ -90,75 +162,13 @@ input[type='email'] {
   transition: border-color 0.2s;
   width: 100%;
 }
+input[type='email']::placeholder { color: var(--muted-amber); opacity: 0.7; }
+input[type='email']:focus { border-color: var(--hearthgold); }
 
-input[type='email']::placeholder {
-  color: var(--muted-amber);
-  opacity: 0.7;
-}
+/* ── Section room backgrounds ────────────────────────────────────── */
 
-input[type='email']:focus {
-  border-color: var(--hearthgold);
-}
-
-/* ── Link hover states ───────────────────────────────────────────── */
-
-.nav-link {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  font-weight: 400;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--midgold);
-  text-decoration: none;
-  transition: color 0.2s;
-  padding-bottom: 2px;
-  border-bottom: 0.5px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
-}
-
-.nav-link:hover {
-  color: var(--warmgold);
-  border-bottom-color: var(--border);
-}
-
-.read-btn {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--hearthgold);
-  text-decoration: none;
-  border: 0.5px solid var(--border);
-  padding: 6px 16px;
-  border-radius: 20px;
-  transition: border-color 0.2s, background 0.2s;
-  display: inline-block;
-}
-
-.read-btn:hover {
-  border-color: var(--hearthgold);
-  background: rgba(200, 130, 10, 0.08);
-}
-
-.article-card-link {
-  text-decoration: none;
-  display: block;
-}
-
-.article-card-link:hover h3 {
-  color: var(--hearthgold);
-}
-
-.scene-card {
-  text-decoration: none;
-  display: block;
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: 4px;
-  padding: 16px;
-  transition: border-color 0.2s;
-}
-
-.scene-card:hover {
-  border-color: var(--border-strong);
-}
+.room-archive    { background: var(--room-archive); }
+.room-altar      { background: var(--room-altar); }
+.room-assignment { background: var(--room-assignment); }
+.room-craft      { background: var(--room-craft); }
+.room-guild      { background: var(--room-guild); }
