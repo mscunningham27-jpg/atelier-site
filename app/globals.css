@@ -1,26 +1,164 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Atelier & The Altar — Design System ────────────────────────── */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette — from the HearthLight trailer */
+  --ember:        #0A0806;
+  --hearthgold:   #C8820A;
+  --warmgold:     #E8C060;
+  --midgold:      #C8A040;
+  --muted-amber:  #9A6A1A;
+  --surface:      rgba(200, 130, 10, 0.055);
+  --surface-mid:  rgba(200, 130, 10, 0.09);
+  --border:       rgba(200, 130, 10, 0.18);
+  --border-strong: rgba(200, 130, 10, 0.32);
+
+  /* Typography */
+  --font-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  var(--font-jost), 'Jost', system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ── Reset & Base ────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--ember);
+  color: var(--warmgold);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+/* ── Atelier Components ──────────────────────────────────────────── */
+
+.section-pill {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: rgba(200, 130, 10, 0.16);
+  color: var(--warmgold);
+  padding: 3px 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+.divider-line {
+  height: 0.5px;
+  background: var(--border);
+  flex: 1;
+}
+
+.rule-ornament {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-amber);
+  white-space: nowrap;
+}
+
+/* ── Inputs ──────────────────────────────────────────────────────── */
+
+input[type='email'] {
+  background: rgba(200, 130, 10, 0.07);
+  border: 0.5px solid var(--border-strong);
+  border-radius: 2px;
+  padding: 10px 16px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--warmgold);
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+
+input[type='email']::placeholder {
+  color: var(--muted-amber);
+  opacity: 0.7;
+}
+
+input[type='email']:focus {
+  border-color: var(--hearthgold);
+}
+
+/* ── Link hover states ───────────────────────────────────────────── */
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--midgold);
+  text-decoration: none;
+  transition: color 0.2s;
+  padding-bottom: 2px;
+  border-bottom: 0.5px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-link:hover {
+  color: var(--warmgold);
+  border-bottom-color: var(--border);
+}
+
+.read-btn {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hearthgold);
+  text-decoration: none;
+  border: 0.5px solid var(--border);
+  padding: 6px 16px;
+  border-radius: 20px;
+  transition: border-color 0.2s, background 0.2s;
+  display: inline-block;
+}
+
+.read-btn:hover {
+  border-color: var(--hearthgold);
+  background: rgba(200, 130, 10, 0.08);
+}
+
+.article-card-link {
+  text-decoration: none;
+  display: block;
+}
+
+.article-card-link:hover h3 {
+  color: var(--hearthgold);
+}
+
+.scene-card {
+  text-decoration: none;
+  display: block;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 4px;
+  padding: 16px;
+  transition: border-color 0.2s;
+}
+
+.scene-card:hover {
+  border-color: var(--border-strong);
 }
