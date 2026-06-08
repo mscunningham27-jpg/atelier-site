@@ -287,4 +287,3 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
     </div>
   )
 }
-x
