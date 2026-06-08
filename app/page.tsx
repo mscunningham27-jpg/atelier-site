@@ -1,11 +1,9 @@
 import Link from 'next/link'
 import NewsletterForm from '@/components/NewsletterForm'
 
-// ── Content (placeholder — will be dynamic MDX once publish pipeline is live) ──
-
+// ── Content ───────────────────────────────────────────────────────
 const FEATURED = {
   section: 'The Archive',
-  sectionSlug: 'archive',
   headline: 'The Hymn Written in a Shipwreck',
   dek: 'What Horatio Spafford sent across the water in 1873 — and why we still cannot stop singing it.',
   readTime: '8 min read',
@@ -45,43 +43,50 @@ const ALTAR_ARTICLES = [
 const SCENE_ITEMS = [
   {
     source: 'r/ChristianMusic',
-    summary:
-      "The Steve Taylor conversation is back — and the question it keeps opening is the right one: what does prophetic satire sound like when the church can't hear itself?",
+    summary: "The Steve Taylor conversation is back — and the question it keeps opening is the right one: what does prophetic satire sound like when the church can't hear itself?",
     link: 'https://www.reddit.com/r/ChristianMusic',
   },
   {
     source: 'r/ChristianMusic',
-    summary:
-      "Augustin SMTH's new single sits at the intersection of pop and something harder to name. Worth three listens before you decide what to call it.",
+    summary: "Augustin SMTH's new single sits at the intersection of pop and something harder to name. Worth three listens before you decide what to call it.",
     link: 'https://www.reddit.com/r/ChristianMusic',
   },
   {
     source: 'r/ChristianMusic',
-    summary:
-      'Aaron Christopher\'s "Silhouette" is the kind of acoustic restraint that takes more courage than noise.',
+    summary: "Aaron Christopher's \"Silhouette\" is the kind of acoustic restraint that takes more courage than noise.",
     link: 'https://www.reddit.com/r/ChristianMusic',
   },
 ]
 
-// ── Collage letter data for ATELIER ──────────────────────────────
-// Each letter has distinct weight/size/style to feel hand-assembled
+// ── Collage letters — on parchment, weight AND ink variation ─────
+// Some letters are bold dark ink, some are lighter as if from
+// a different printed source. One letter in hearthgold.
 const ATELIER_LETTERS = [
-  { char: 'A', weight: 300, scale: 0.91, italic: false, offset: 3  },
-  { char: 'T', weight: 700, scale: 1.07, italic: false, offset: 0  },
-  { char: 'E', weight: 400, scale: 0.96, italic: true,  offset: -2 },
-  { char: 'L', weight: 600, scale: 1.03, italic: false, offset: 0  },
-  { char: 'I', weight: 300, scale: 0.89, italic: false, offset: 4  },
-  { char: 'E', weight: 500, scale: 1.05, italic: true,  offset: -1 },
-  { char: 'R', weight: 400, scale: 0.98, italic: false, offset: 0  },
+  { char: 'A', weight: 300, scale: 0.91, italic: false, offset: 3,  color: '#8C6830' },
+  { char: 'T', weight: 700, scale: 1.07, italic: false, offset: 0,  color: '#1C1008' },
+  { char: 'E', weight: 400, scale: 0.96, italic: true,  offset: -2, color: '#3A2810' },
+  { char: 'L', weight: 600, scale: 1.03, italic: false, offset: 0,  color: '#1C1008' },
+  { char: 'I', weight: 300, scale: 0.89, italic: false, offset: 4,  color: '#C8820A' },
+  { char: 'E', weight: 500, scale: 1.05, italic: true,  offset: -1, color: '#3A2810' },
+  { char: 'R', weight: 400, scale: 0.98, italic: false, offset: 0,  color: '#1C1008' },
 ]
 
-// ── Page ─────────────────────────────────────────────────────────
+// ── Section config ────────────────────────────────────────────────
+const SECTIONS = [
+  { name: 'The Assignment', path: '/assignment' },
+  { name: 'The Craft',      path: '/craft' },
+  { name: 'The Archive',    path: '/archive' },
+  { name: 'The Altar',      path: '/altar' },
+  { name: 'The Guild',      path: '/guild' },
+]
+
+// ── Page ──────────────────────────────────────────────────────────
 export default function HomePage() {
   return (
-    <div style={{ backgroundColor: 'var(--ember)', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: 'var(--parchment)', minHeight: '100vh' }}>
 
-      {/* ── Header ─────────────────────────────────────────────── */}
-      <header style={{ borderBottom: '0.5px solid var(--border)', paddingBottom: 0 }}>
+      {/* ── Header ───────────────────────────────────────────── */}
+      <header style={{ borderBottom: '0.5px solid var(--border)' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '28px 24px 0' }}>
 
           {/* Top rule */}
@@ -93,50 +98,47 @@ export default function HomePage() {
             <div className="divider-line" />
           </div>
 
-          {/* ── Collage Masthead ──────────────────────────────── */}
+          {/* ── Collage Masthead ─────────────────────────────── */}
           <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-            <Link href="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'baseline', gap: 0, flexWrap: 'wrap', justifyContent: 'center' }}>
-
-              {/* THE — small spaced sans */}
+            <Link href="/" style={{
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'baseline',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: 0,
+            }}>
+              {/* THE */}
               <span style={{
                 fontFamily: 'var(--font-sans)',
                 fontSize: 'clamp(9px, 1.2vw, 13px)',
                 fontWeight: 300,
                 letterSpacing: '0.35em',
                 textTransform: 'uppercase',
-                color: 'var(--muted-amber)',
+                color: 'var(--ink-muted)',
                 marginRight: 'clamp(6px, 1vw, 14px)',
                 position: 'relative',
                 top: '-4px',
-              }}>
-                THE
-              </span>
+              }}>THE</span>
 
-              {/* ATELIER — collage letters */}
-              <span style={{
-                display: 'inline-flex',
-                alignItems: 'baseline',
-                marginRight: 'clamp(8px, 1.5vw, 20px)',
-              }}>
+              {/* ATELIER — collage */}
+              <span style={{ display: 'inline-flex', alignItems: 'baseline', marginRight: 'clamp(6px, 1.2vw, 16px)' }}>
                 {ATELIER_LETTERS.map((l, i) => (
-                  <span
-                    key={i}
-                    className="masthead-letter"
-                    style={{
-                      fontSize: `clamp(${Math.round(28 * l.scale)}px, ${(4.5 * l.scale).toFixed(2)}vw, ${Math.round(58 * l.scale)}px)`,
-                      fontWeight: l.weight,
-                      fontStyle: l.italic ? 'italic' : 'normal',
-                      position: 'relative',
-                      top: `${l.offset}px`,
-                      letterSpacing: '0.01em',
-                    }}
-                  >
+                  <span key={i} className="masthead-letter" style={{
+                    fontSize: `clamp(${Math.round(28 * l.scale)}px, ${(4.5 * l.scale).toFixed(2)}vw, ${Math.round(58 * l.scale)}px)`,
+                    fontWeight: l.weight,
+                    fontStyle: l.italic ? 'italic' : 'normal',
+                    color: l.color,
+                    position: 'relative',
+                    top: `${l.offset}px`,
+                    letterSpacing: '0.01em',
+                  }}>
                     {l.char}
                   </span>
                 ))}
               </span>
 
-              {/* & — large ornamental italic in hearthgold */}
+              {/* & — ornamental */}
               <span style={{
                 fontFamily: 'var(--font-serif)',
                 fontSize: 'clamp(36px, 6vw, 80px)',
@@ -146,51 +148,37 @@ export default function HomePage() {
                 lineHeight: 1,
                 position: 'relative',
                 top: 'clamp(6px, 1.2vw, 16px)',
-                margin: '0 clamp(4px, 0.8vw, 12px)',
-              }}>
-                &
-              </span>
+                margin: '0 clamp(4px, 0.8vw, 10px)',
+              }}>&</span>
 
-              {/* The Altar — refined serif */}
-              <span style={{
-                display: 'inline-flex',
-                alignItems: 'baseline',
-                gap: 'clamp(4px, 0.8vw, 10px)',
-                marginLeft: 'clamp(4px, 0.6vw, 8px)',
-              }}>
+              {/* The Altar — refined */}
+              <span style={{ display: 'inline-flex', alignItems: 'baseline', gap: 'clamp(4px, 0.6vw, 8px)', marginLeft: 'clamp(2px, 0.4vw, 6px)' }}>
                 <span style={{
                   fontFamily: 'var(--font-serif)',
                   fontSize: 'clamp(14px, 2.2vw, 26px)',
                   fontWeight: 300,
                   fontStyle: 'italic',
-                  color: 'var(--midgold)',
-                  position: 'relative',
-                  top: '0px',
-                }}>
-                  The
-                </span>
+                  color: 'var(--ink-mid)',
+                }}>The</span>
                 <span style={{
                   fontFamily: 'var(--font-serif)',
                   fontSize: 'clamp(28px, 4.5vw, 58px)',
                   fontWeight: 600,
-                  color: 'var(--warmgold)',
+                  color: 'var(--ink)',
                   letterSpacing: '0.015em',
-                }}>
-                  Altar
-                </span>
+                }}>Altar</span>
               </span>
             </Link>
 
-            {/* Tagline */}
             <p style={{
               fontFamily: 'var(--font-sans)',
               fontSize: '9px',
               fontWeight: 300,
               letterSpacing: '0.26em',
               textTransform: 'uppercase',
-              color: 'var(--muted-amber)',
+              color: 'var(--ink-muted)',
               margin: '10px 0 0',
-              opacity: 0.75,
+              opacity: 0.65,
             }}>
               Faith · Craft · The Life Between
             </p>
@@ -203,16 +191,8 @@ export default function HomePage() {
             gap: 'clamp(14px, 3vw, 40px)',
             padding: '16px 0',
           }}>
-            {[
-              { name: 'The Assignment', path: '/assignment' },
-              { name: 'The Craft',      path: '/craft' },
-              { name: 'The Archive',    path: '/archive' },
-              { name: 'The Altar',      path: '/altar' },
-              { name: 'The Guild',      path: '/guild' },
-            ].map((s) => (
-              <Link key={s.name} href={s.path} className="nav-link">
-                {s.name}
-              </Link>
+            {SECTIONS.map((s) => (
+              <Link key={s.name} href={s.path} className="nav-link">{s.name}</Link>
             ))}
           </nav>
         </div>
@@ -220,112 +200,93 @@ export default function HomePage() {
 
       <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px' }}>
 
-        {/* ── Cinematic Hero ──────────────────────────────────── */}
+        {/* ── Hero — dark photograph on light page ─────────── */}
         <section style={{ padding: '48px 0 40px' }}>
           <div style={{
             position: 'relative',
             borderRadius: '2px',
-            border: '0.5px solid var(--border)',
             overflow: 'hidden',
-            minHeight: 'clamp(320px, 44vw, 520px)',
+            minHeight: 'clamp(300px, 42vw, 500px)',
             display: 'flex',
             alignItems: 'flex-end',
             background: 'linear-gradient(155deg, #251407 0%, #1a0e05 30%, #0f0a05 60%, #0a0806 100%)',
+            boxShadow: '0 4px 32px rgba(26,18,8,0.18)',
           }}>
-            {/* Crosshatch grain texture */}
+            {/* Grain */}
             <div style={{
               position: 'absolute', inset: 0, pointerEvents: 'none',
-              background: `
-                repeating-linear-gradient(
-                  -45deg,
-                  transparent 0px,
-                  transparent 3px,
-                  rgba(200,130,10,0.012) 3px,
-                  rgba(200,130,10,0.012) 4px
-                ),
-                repeating-linear-gradient(
-                  45deg,
-                  transparent 0px,
-                  transparent 5px,
-                  rgba(200,130,10,0.008) 5px,
-                  rgba(200,130,10,0.008) 6px
-                )
-              `,
+              background: `repeating-linear-gradient(-45deg, transparent 0px, transparent 3px, rgba(200,130,10,0.012) 3px, rgba(200,130,10,0.012) 4px),
+                           repeating-linear-gradient(45deg, transparent 0px, transparent 5px, rgba(200,130,10,0.008) 5px, rgba(200,130,10,0.008) 6px)`,
             }} />
-
-            {/* Amber glow — top right */}
+            {/* Amber glow */}
             <div style={{
-              position: 'absolute',
-              top: '-60px', right: '-40px',
+              position: 'absolute', top: '-60px', right: '-40px',
               width: '400px', height: '400px',
-              background: 'radial-gradient(circle, rgba(200,130,10,0.07) 0%, transparent 70%)',
+              background: 'radial-gradient(circle, rgba(200,130,10,0.08) 0%, transparent 70%)',
               pointerEvents: 'none',
             }} />
-
-            {/* Bottom gradient for text legibility */}
+            {/* Vignette */}
             <div style={{
               position: 'absolute', inset: 0, pointerEvents: 'none',
-              background: 'linear-gradient(to top, rgba(10,8,6,0.97) 0%, rgba(10,8,6,0.6) 35%, rgba(10,8,6,0.1) 65%, transparent 100%)',
+              background: 'linear-gradient(to top, rgba(10,8,6,0.97) 0%, rgba(10,8,6,0.55) 35%, rgba(10,8,6,0.1) 65%, transparent 100%)',
             }} />
+            {/* Archive watermark */}
+            <div style={{
+              position: 'absolute', top: '20px', right: '24px',
+              fontFamily: 'var(--font-archive)',
+              fontSize: 'clamp(48px, 7vw, 96px)',
+              fontStyle: 'italic',
+              color: 'rgba(200,130,10,0.07)',
+              lineHeight: 1,
+              userSelect: 'none',
+            }}>Archive</div>
 
             {/* Text overlay */}
-            <div style={{
-              position: 'relative',
-              padding: 'clamp(24px, 4vw, 48px)',
-              maxWidth: '680px',
-            }}>
-              <span className="section-pill" style={{ marginBottom: '16px', display: 'inline-block' }}>
+            <div style={{ position: 'relative', padding: 'clamp(24px, 4vw, 48px)', maxWidth: '640px' }}>
+              <span className="section-pill" style={{ background: 'rgba(200,130,10,0.22)', color: '#E8C060', marginBottom: '14px', display: 'inline-block' }}>
                 {FEATURED.section}
               </span>
               <h2 style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(32px, 5vw, 64px)',
-                fontWeight: 600,
-                color: 'var(--warmgold)',
-                lineHeight: 1.05,
+                fontFamily: 'var(--font-archive)',
+                fontSize: 'clamp(28px, 4.5vw, 58px)',
+                fontWeight: 400,
+                fontStyle: 'italic',
+                color: '#E8C060',
+                lineHeight: 1.1,
                 margin: '0 0 16px',
-                letterSpacing: '-0.01em',
               }}>
                 {FEATURED.headline}
               </h2>
               <p style={{
                 fontFamily: 'var(--font-sans)',
-                fontSize: 'clamp(13px, 1.5vw, 16px)',
+                fontSize: 'clamp(13px, 1.4vw, 15px)',
                 fontWeight: 300,
-                color: 'var(--midgold)',
+                color: '#C8A040',
                 lineHeight: 1.65,
                 margin: '0 0 24px',
-                maxWidth: '480px',
+                maxWidth: '460px',
               }}>
                 {FEATURED.dek}
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                <span style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '10px',
-                  color: 'var(--muted-amber)',
-                  letterSpacing: '0.08em',
-                }}>
+                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', color: '#9A6A1A', letterSpacing: '0.08em' }}>
                   {FEATURED.readTime}
                 </span>
-                <Link href={FEATURED.slug} className="read-btn">Read →</Link>
+                <Link href={FEATURED.slug} style={{
+                  fontFamily: 'var(--font-sans)',
+                  fontSize: '10px',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: '#C8820A',
+                  textDecoration: 'none',
+                  border: '0.5px solid rgba(200,130,10,0.4)',
+                  padding: '6px 16px',
+                  borderRadius: '20px',
+                  transition: 'all 0.2s',
+                }}>
+                  Read →
+                </Link>
               </div>
-            </div>
-
-            {/* Section watermark — top right */}
-            <div style={{
-              position: 'absolute',
-              top: '24px', right: '28px',
-              fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(48px, 7vw, 96px)',
-              fontWeight: 600,
-              fontStyle: 'italic',
-              color: 'rgba(200,130,10,0.06)',
-              lineHeight: 1,
-              userSelect: 'none',
-              letterSpacing: '-0.02em',
-            }}>
-              Archive
             </div>
           </div>
         </section>
@@ -333,94 +294,77 @@ export default function HomePage() {
         {/* ── Section Divider ─────────────────────────────────── */}
         <SectionRule label="Latest" />
 
-        {/* ── Two-column rooms ─────────────────────────────────── */}
+        {/* ── Room grid ────────────────────────────────────────── */}
         <section style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '2px',
           margin: '32px 0 56px',
           border: '0.5px solid var(--border)',
           borderRadius: '2px',
           overflow: 'hidden',
         }}>
           {/* The Assignment room */}
-          <div className="room-assignment" style={{ padding: 'clamp(24px, 3vw, 40px)' }}>
+          <div style={{ background: 'var(--room-assignment)', padding: 'clamp(24px, 3vw, 40px)' }}>
             <RoomHeader
               label="The Assignment"
               ornament="✦"
               accentColor="var(--accent-assignment)"
+              fontVar="var(--font-assignment)"
             />
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-              {ASSIGNMENT_ARTICLES.map((a, i) => (
-                <ArticleCard key={i} article={a} />
-              ))}
-            </div>
+            {ASSIGNMENT_ARTICLES.map((a, i) => (
+              <ArticleCard key={i} article={a} fontVar="var(--font-assignment)" isLast={i === ASSIGNMENT_ARTICLES.length - 1} />
+            ))}
           </div>
 
-          {/* Vertical divider */}
-          <div style={{ width: '0.5px', background: 'var(--border)', minHeight: '100%' }} />
+          {/* Divider */}
+          <div style={{ width: '0.5px', background: 'var(--border)' }} />
 
           {/* The Altar room */}
-          <div className="room-altar" style={{ padding: 'clamp(24px, 3vw, 40px)' }}>
+          <div style={{ background: 'var(--room-altar)', padding: 'clamp(24px, 3vw, 40px)' }}>
             <RoomHeader
               label="The Altar"
               ornament="†"
               accentColor="var(--accent-altar)"
+              fontVar="var(--font-altar)"
             />
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-              {ALTAR_ARTICLES.map((a, i) => (
-                <ArticleCard key={i} article={a} />
-              ))}
-            </div>
+            {ALTAR_ARTICLES.map((a, i) => (
+              <ArticleCard key={i} article={a} fontVar="var(--font-altar)" isLast={i === ALTAR_ARTICLES.length - 1} />
+            ))}
           </div>
         </section>
 
         {/* ── From the Scene ───────────────────────────────────── */}
         <section style={{ marginBottom: '56px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
             <div className="divider-line" />
-            <span style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '9px',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              color: 'var(--muted-amber)',
-              whiteSpace: 'nowrap',
-            }}>
-              📡 From the Scene
-            </span>
+            <span className="rule-ornament">📡 From the Scene</span>
             <div className="divider-line" />
           </div>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '1px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
             border: '0.5px solid var(--border)',
             borderRadius: '2px',
             overflow: 'hidden',
           }}>
             {SCENE_ITEMS.map((item, i) => (
-              <Link key={i} href={item.link} className="scene-card" style={{ borderRadius: 0, border: 'none', borderRight: i < SCENE_ITEMS.length - 1 ? '0.5px solid var(--border)' : 'none' }}>
+              <Link key={i} href={item.link} className="scene-card">
                 <p style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '9px',
                   letterSpacing: '0.12em',
                   textTransform: 'uppercase',
-                  color: 'var(--muted-amber)',
+                  color: 'var(--ink-muted)',
                   margin: '0 0 10px',
-                }}>
-                  {item.source}
-                </p>
+                }}>{item.source}</p>
                 <p style={{
                   fontFamily: 'var(--font-sans)',
                   fontSize: '13px',
                   fontWeight: 300,
-                  color: 'var(--midgold)',
+                  color: 'var(--ink-mid)',
                   lineHeight: 1.65,
                   margin: 0,
-                }}>
-                  {item.summary}
-                </p>
+                }}>{item.summary}</p>
               </Link>
             ))}
           </div>
@@ -435,34 +379,28 @@ export default function HomePage() {
           marginBottom: '64px',
           position: 'relative',
           overflow: 'hidden',
+          background: 'var(--parchment-mid)',
         }}>
-          {/* Background watermark */}
           <div style={{
-            position: 'absolute',
-            top: '50%', left: '50%',
+            position: 'absolute', top: '50%', left: '50%',
             transform: 'translate(-50%, -50%)',
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(80px, 14vw, 200px)',
             fontWeight: 600,
             fontStyle: 'italic',
-            color: 'rgba(200,130,10,0.03)',
+            color: 'rgba(26,18,8,0.03)',
             whiteSpace: 'nowrap',
             userSelect: 'none',
             pointerEvents: 'none',
-          }}>
-            Offering
-          </div>
-
+          }}>Offering</div>
           <div style={{ position: 'relative' }}>
-            <p className="rule-ornament" style={{ marginBottom: '14px' }}>
-              The Weekly Offering
-            </p>
+            <p className="rule-ornament" style={{ marginBottom: '14px' }}>The Weekly Offering</p>
             <h3 style={{
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(26px, 3.5vw, 44px)',
               fontWeight: 400,
               fontStyle: 'italic',
-              color: 'var(--warmgold)',
+              color: 'var(--ink)',
               margin: '0 0 14px',
               lineHeight: 1.15,
             }}>
@@ -472,7 +410,7 @@ export default function HomePage() {
               fontFamily: 'var(--font-sans)',
               fontSize: '14px',
               fontWeight: 300,
-              color: 'var(--midgold)',
+              color: 'var(--ink-mid)',
               lineHeight: 1.7,
               margin: '0 auto 32px',
               maxWidth: '420px',
@@ -485,40 +423,28 @@ export default function HomePage() {
       </main>
 
       {/* ── Footer ───────────────────────────────────────────── */}
-      <footer style={{
-        borderTop: '0.5px solid var(--border)',
-        padding: '32px 24px',
-      }}>
+      <footer style={{ borderTop: '0.5px solid var(--border)', padding: '32px 24px' }}>
         <div style={{
-          maxWidth: '1100px',
-          margin: '0 auto',
-          display: 'flex',
-          alignItems: 'center',
+          maxWidth: '1100px', margin: '0 auto',
+          display: 'flex', alignItems: 'center',
           justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: '12px',
+          flexWrap: 'wrap', gap: '12px',
         }}>
           <p style={{
             fontFamily: 'var(--font-serif)',
             fontSize: '14px',
             fontStyle: 'italic',
-            color: 'var(--muted-amber)',
-            margin: 0,
-            opacity: 0.7,
-          }}>
-            The Atelier & The Altar
-          </p>
+            color: 'var(--ink-muted)',
+            margin: 0, opacity: 0.7,
+          }}>The Atelier & The Altar</p>
           <p style={{
             fontFamily: 'var(--font-sans)',
             fontSize: '9px',
             letterSpacing: '0.14em',
             textTransform: 'uppercase',
-            color: 'var(--muted-amber)',
-            opacity: 0.45,
-            margin: 0,
-          }}>
-            A HearthLight Media Publication · Truth. Expressed. Fully.
-          </p>
+            color: 'var(--ink-muted)',
+            opacity: 0.45, margin: 0,
+          }}>A HearthLight Media Publication · Truth. Expressed. Fully.</p>
         </div>
       </footer>
     </div>
@@ -537,81 +463,61 @@ function SectionRule({ label }: { label: string }) {
   )
 }
 
-function RoomHeader({
-  label,
-  ornament,
-  accentColor,
-}: {
-  label: string
-  ornament: string
-  accentColor: string
+function RoomHeader({ label, ornament, accentColor, fontVar }: {
+  label: string; ornament: string; accentColor: string; fontVar: string
 }) {
   return (
     <div style={{ marginBottom: '24px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '4px' }}>
-        <span style={{
-          fontFamily: 'var(--font-serif)',
-          fontSize: '16px',
-          color: accentColor,
-          opacity: 0.7,
-        }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
+        <span style={{ fontFamily: fontVar, fontSize: '16px', color: accentColor, opacity: 0.8 }}>
           {ornament}
         </span>
         <span style={{
-          fontFamily: 'var(--font-sans)',
-          fontSize: '9px',
-          letterSpacing: '0.18em',
-          textTransform: 'uppercase',
-          color: 'var(--muted-amber)',
-        }}>
-          {label}
-        </span>
+          fontFamily: fontVar,
+          fontSize: '13px',
+          fontWeight: 400,
+          letterSpacing: '0.04em',
+          color: 'var(--ink-mid)',
+        }}>{label}</span>
       </div>
-      <div style={{ height: '0.5px', background: accentColor, opacity: 0.2 }} />
+      <div style={{ height: '0.5px', background: accentColor, opacity: 0.25 }} />
     </div>
   )
 }
 
-function ArticleCard({
-  article,
-}: {
+function ArticleCard({ article, fontVar, isLast }: {
   article: { headline: string; dek: string; readTime: string; slug: string }
+  fontVar: string
+  isLast: boolean
 }) {
   return (
-    <Link href={article.slug} className="article-link">
-      <div style={{ borderBottom: '0.5px solid var(--border)', paddingBottom: '28px' }}>
-        <h3
-          className="article-headline"
-          style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: '20px',
-            fontWeight: 600,
-            color: 'var(--warmgold)',
-            lineHeight: 1.2,
-            margin: '0 0 10px',
-          }}
-        >
+    <Link href={article.slug} className="article-link" style={{ display: 'block', marginBottom: isLast ? 0 : '28px' }}>
+      <div style={{ borderBottom: isLast ? 'none' : '0.5px solid var(--border)', paddingBottom: isLast ? 0 : '28px' }}>
+        <h3 className="article-headline" style={{
+          fontFamily: fontVar,
+          fontSize: '19px',
+          fontWeight: 400,
+          color: 'var(--ink)',
+          lineHeight: 1.25,
+          margin: '0 0 10px',
+        }}>
           {article.headline}
         </h3>
         <p style={{
           fontFamily: 'var(--font-sans)',
           fontSize: '13px',
           fontWeight: 300,
-          color: 'var(--midgold)',
+          color: 'var(--ink-mid)',
           lineHeight: 1.65,
-          margin: '0 0 12px',
-        }}>
-          {article.dek}
-        </p>
+          margin: '0 0 10px',
+        }}>{article.dek}</p>
         <span style={{
           fontFamily: 'var(--font-sans)',
           fontSize: '9px',
           letterSpacing: '0.1em',
           textTransform: 'uppercase',
-          color: 'var(--muted-amber)',
-        }}>
-          {article.readTime}
-        </span>
+          color: 'var(--ink-muted)',
+        }}>{article.readTime}</span>
       </div>
     </Link>
   )

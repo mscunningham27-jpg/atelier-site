@@ -2,73 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Atelier & The Altar v2 — Design System ─────────────────────── */
+/* ── Atelier & The Altar v3 — Warm Parchment Design System ──────── */
 
 :root {
-  /* Base palette */
-  --ember:        #0A0806;
+  /* ── Background & base ─────────────────────────────────────────── */
+  --parchment:    #F2EDE0;   /* warm cream — the page */
+  --parchment-mid:#EAE4D4;   /* slightly deeper cream — cards */
+  --ink:          #1C1008;   /* warm near-black — primary text */
+  --ink-mid:      #5A3E18;   /* warm brown — secondary text */
+  --ink-muted:    #8C6830;   /* muted brown — labels, metadata */
+
+  /* ── Accent ────────────────────────────────────────────────────── */
   --hearthgold:   #C8820A;
-  --warmgold:     #E8C060;
-  --midgold:      #C8A040;
-  --muted-amber:  #9A6A1A;
-  --surface:      rgba(200, 130, 10, 0.055);
-  --surface-mid:  rgba(200, 130, 10, 0.09);
-  --border:       rgba(200, 130, 10, 0.18);
-  --border-strong: rgba(200, 130, 10, 0.32);
+  --hearthgold-lt: rgba(200, 130, 10, 0.12);
+  --border:       rgba(26, 18, 8, 0.12);
+  --border-strong: rgba(26, 18, 8, 0.22);
 
-  /* Section room accents — each section has its own quiet color */
-  --room-archive:    rgba(200, 130, 10, 0.07);    /* amber warmth — historical */
-  --room-altar:      rgba(90, 110, 150, 0.06);    /* cool blue — liturgical */
-  --room-assignment: rgba(110, 130, 100, 0.05);   /* sage — theological */
-  --room-craft:      rgba(160, 110, 70, 0.06);    /* terracotta — tactile */
-  --room-guild:      rgba(200, 160, 80, 0.05);    /* warm — human */
+  /* ── Section room tints ────────────────────────────────────────── */
+  --room-assignment: #EDE7D6;   /* warm sage-cream */
+  --room-craft:      #EAE2D2;   /* earthy cream */
+  --room-archive:    #EDE6D0;   /* aged paper */
+  --room-altar:      #E8E6EC;   /* faint cool blue — liturgical */
+  --room-guild:      #EDE8DB;   /* warm neutral */
 
-  --accent-archive:    #C8820A;
-  --accent-altar:      #8090B0;
-  --accent-assignment: #8A9E78;
-  --accent-craft:      #B07848;
-  --accent-guild:      #C8A060;
+  /* ── Section accent colors ─────────────────────────────────────── */
+  --accent-assignment: #6A7A5A;   /* sage */
+  --accent-craft:      #A06840;   /* terracotta */
+  --accent-archive:    #C8820A;   /* hearthgold */
+  --accent-altar:      #6878A8;   /* muted blue */
+  --accent-guild:      #A08050;   /* warm tan */
 
-  /* Typography */
-  --font-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
-  --font-sans:  var(--font-jost), 'Jost', system-ui, sans-serif;
+  /* ── Section fonts ─────────────────────────────────────────────── */
+  /*
+    Assignment  — EB Garamond:       humanist, warm, theological journal
+    Craft       — Libre Baskerville: sturdy, practical, workshop
+    Archive     — IM Fell English:   antiquarian, aged, historical
+    Altar       — Cinzel:            inscriptional, liturgical, devotional
+    Guild       — Lora:              warm, italic-rich, human
+  */
+  --font-serif:       var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --font-sans:        var(--font-jost), 'Jost', system-ui, sans-serif;
+  --font-assignment:  var(--font-eb-garamond), 'EB Garamond', Georgia, serif;
+  --font-craft:       var(--font-libre-baskerville), 'Libre Baskerville', Georgia, serif;
+  --font-archive:     var(--font-im-fell-english), 'IM Fell English', Georgia, serif;
+  --font-altar:       var(--font-cinzel), 'Cinzel', Georgia, serif;
+  --font-guild:       var(--font-lora), 'Lora', Georgia, serif;
 }
 
+/* ── Reset & base ────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body {
-  background-color: var(--ember);
-  color: var(--warmgold);
+  background-color: var(--parchment);
+  color: var(--ink);
   font-family: var(--font-sans);
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
 }
-
 a { color: inherit; }
 
 /* ── Masthead collage letters ────────────────────────────────────── */
-
 .masthead-letter {
   font-family: var(--font-serif);
   display: inline-block;
   line-height: 1;
-  color: var(--warmgold);
   transition: color 0.3s;
 }
 
 /* ── Shared components ───────────────────────────────────────────── */
-
 .section-pill {
   font-family: var(--font-sans);
   font-size: 9px;
   font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  background: rgba(200, 130, 10, 0.16);
-  color: var(--warmgold);
+  background: var(--hearthgold-lt);
+  color: var(--ink-mid);
   padding: 3px 10px;
   border-radius: 20px;
   display: inline-block;
@@ -85,31 +97,29 @@ a { color: inherit; }
   font-size: 9px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--muted-amber);
+  color: var(--ink-muted);
   white-space: nowrap;
 }
 
 /* ── Navigation ──────────────────────────────────────────────────── */
-
 .nav-link {
   font-family: var(--font-sans);
   font-size: 10px;
   font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--midgold);
+  color: var(--ink-mid);
   text-decoration: none;
   padding-bottom: 2px;
   border-bottom: 0.5px solid transparent;
   transition: color 0.2s, border-color 0.2s;
 }
 .nav-link:hover {
-  color: var(--warmgold);
-  border-bottom-color: var(--border);
+  color: var(--ink);
+  border-bottom-color: var(--border-strong);
 }
 
-/* ── Buttons & CTAs ──────────────────────────────────────────────── */
-
+/* ── CTAs ────────────────────────────────────────────────────────── */
 .read-btn {
   font-family: var(--font-sans);
   font-size: 10px;
@@ -117,7 +127,7 @@ a { color: inherit; }
   text-transform: uppercase;
   color: var(--hearthgold);
   text-decoration: none;
-  border: 0.5px solid var(--border);
+  border: 0.5px solid var(--border-strong);
   padding: 6px 16px;
   border-radius: 20px;
   transition: border-color 0.2s, background 0.2s;
@@ -125,50 +135,39 @@ a { color: inherit; }
 }
 .read-btn:hover {
   border-color: var(--hearthgold);
-  background: rgba(200, 130, 10, 0.08);
+  background: var(--hearthgold-lt);
 }
 
 /* ── Article links ───────────────────────────────────────────────── */
-
 .article-link { text-decoration: none; display: block; }
 .article-link:hover .article-headline { color: var(--hearthgold); }
 .article-headline { transition: color 0.2s; }
 
 /* ── Scene cards ─────────────────────────────────────────────────── */
-
 .scene-card {
   text-decoration: none;
   display: block;
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: 2px;
-  padding: 18px;
-  transition: border-color 0.2s;
+  background: var(--parchment-mid);
+  border-right: 0.5px solid var(--border);
+  padding: 20px;
+  transition: background 0.2s;
 }
-.scene-card:hover { border-color: var(--border-strong); }
+.scene-card:last-child { border-right: none; }
+.scene-card:hover { background: var(--hearthgold-lt); }
 
 /* ── Inputs ──────────────────────────────────────────────────────── */
-
 input[type='email'] {
-  background: rgba(200, 130, 10, 0.07);
+  background: rgba(26, 18, 8, 0.04);
   border: 0.5px solid var(--border-strong);
   border-radius: 2px;
   padding: 10px 16px;
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 300;
-  color: var(--warmgold);
+  color: var(--ink);
   outline: none;
   transition: border-color 0.2s;
   width: 100%;
 }
-input[type='email']::placeholder { color: var(--muted-amber); opacity: 0.7; }
+input[type='email']::placeholder { color: var(--ink-muted); opacity: 0.7; }
 input[type='email']:focus { border-color: var(--hearthgold); }
-
-/* ── Section room backgrounds ────────────────────────────────────── */
-
-.room-archive    { background: var(--room-archive); }
-.room-altar      { background: var(--room-altar); }
-.room-assignment { background: var(--room-assignment); }
-.room-craft      { background: var(--room-craft); }
-.room-guild      { background: var(--room-guild); }
