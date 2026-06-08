@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import NewsletterForm from '@/components/NewsletterForm'
 
-// ── Content ───────────────────────────────────────────────────────
 const FEATURED = {
   section: 'The Archive',
   headline: 'The Hymn Written in a Shipwreck',
@@ -58,9 +57,6 @@ const SCENE_ITEMS = [
   },
 ]
 
-// ── Collage letters — on parchment, weight AND ink variation ─────
-// Some letters are bold dark ink, some are lighter as if from
-// a different printed source. One letter in hearthgold.
 const ATELIER_LETTERS = [
   { char: 'A', weight: 300, scale: 0.91, italic: false, offset: 3,  color: '#8C6830' },
   { char: 'T', weight: 700, scale: 1.07, italic: false, offset: 0,  color: '#1C1008' },
@@ -71,7 +67,6 @@ const ATELIER_LETTERS = [
   { char: 'R', weight: 400, scale: 0.98, italic: false, offset: 0,  color: '#1C1008' },
 ]
 
-// ── Section config ────────────────────────────────────────────────
 const SECTIONS = [
   { name: 'The Assignment', path: '/assignment' },
   { name: 'The Craft',      path: '/craft' },
@@ -80,117 +75,41 @@ const SECTIONS = [
   { name: 'The Guild',      path: '/guild' },
 ]
 
-// ── Page ──────────────────────────────────────────────────────────
 export default function HomePage() {
   return (
     <div style={{ backgroundColor: 'var(--parchment)', minHeight: '100vh' }}>
 
-      {/* ── Header ───────────────────────────────────────────── */}
       <header style={{ borderBottom: '0.5px solid var(--border)' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '28px 24px 0' }}>
 
-          {/* Top rule */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '28px' }}>
             <div className="divider-line" />
-            <span className="rule-ornament" style={{ fontSize: '8px', letterSpacing: '0.28em' }}>
-              HearthLight Media
-            </span>
+            <span className="rule-ornament" style={{ fontSize: '8px', letterSpacing: '0.28em' }}>HearthLight Media</span>
             <div className="divider-line" />
           </div>
 
-          {/* ── Collage Masthead ─────────────────────────────── */}
           <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-            <Link href="/" style={{
-              textDecoration: 'none',
-              display: 'inline-flex',
-              alignItems: 'baseline',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              gap: 0,
-            }}>
-              {/* THE */}
-              <span style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: 'clamp(9px, 1.2vw, 13px)',
-                fontWeight: 300,
-                letterSpacing: '0.35em',
-                textTransform: 'uppercase',
-                color: 'var(--ink-muted)',
-                marginRight: 'clamp(6px, 1vw, 14px)',
-                position: 'relative',
-                top: '-4px',
-              }}>THE</span>
-
-              {/* ATELIER — collage */}
+            <Link href="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'baseline', flexWrap: 'wrap', justifyContent: 'center', gap: 0 }}>
+              <span style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(9px, 1.2vw, 13px)', fontWeight: 300, letterSpacing: '0.35em', textTransform: 'uppercase', color: 'var(--ink-muted)', marginRight: 'clamp(6px, 1vw, 14px)', position: 'relative', top: '-4px' }}>THE</span>
               <span style={{ display: 'inline-flex', alignItems: 'baseline', marginRight: 'clamp(6px, 1.2vw, 16px)' }}>
                 {ATELIER_LETTERS.map((l, i) => (
-                  <span key={i} className="masthead-letter" style={{
-                    fontSize: `clamp(${Math.round(28 * l.scale)}px, ${(4.5 * l.scale).toFixed(2)}vw, ${Math.round(58 * l.scale)}px)`,
-                    fontWeight: l.weight,
-                    fontStyle: l.italic ? 'italic' : 'normal',
-                    color: l.color,
-                    position: 'relative',
-                    top: `${l.offset}px`,
-                    letterSpacing: '0.01em',
-                  }}>
+                  <span key={i} className="masthead-letter" style={{ fontSize: `clamp(${Math.round(28 * l.scale)}px, ${(4.5 * l.scale).toFixed(2)}vw, ${Math.round(58 * l.scale)}px)`, fontWeight: l.weight, fontStyle: l.italic ? 'italic' : 'normal', color: l.color, position: 'relative', top: `${l.offset}px`, letterSpacing: '0.01em' }}>
                     {l.char}
                   </span>
                 ))}
               </span>
-
-              {/* & — ornamental */}
-              <span style={{
-                fontFamily: 'var(--font-serif)',
-                fontSize: 'clamp(36px, 6vw, 80px)',
-                fontWeight: 400,
-                fontStyle: 'italic',
-                color: 'var(--hearthgold)',
-                lineHeight: 1,
-                position: 'relative',
-                top: 'clamp(6px, 1.2vw, 16px)',
-                margin: '0 clamp(4px, 0.8vw, 10px)',
-              }}>&</span>
-
-              {/* The Altar — refined */}
+              <span style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(36px, 6vw, 80px)', fontWeight: 400, fontStyle: 'italic', color: 'var(--hearthgold)', lineHeight: 1, position: 'relative', top: 'clamp(6px, 1.2vw, 16px)', margin: '0 clamp(4px, 0.8vw, 10px)' }}>&</span>
               <span style={{ display: 'inline-flex', alignItems: 'baseline', gap: 'clamp(4px, 0.6vw, 8px)', marginLeft: 'clamp(2px, 0.4vw, 6px)' }}>
-                <span style={{
-                  fontFamily: 'var(--font-serif)',
-                  fontSize: 'clamp(14px, 2.2vw, 26px)',
-                  fontWeight: 300,
-                  fontStyle: 'italic',
-                  color: 'var(--ink-mid)',
-                }}>The</span>
-                <span style={{
-                  fontFamily: 'var(--font-serif)',
-                  fontSize: 'clamp(28px, 4.5vw, 58px)',
-                  fontWeight: 600,
-                  color: 'var(--ink)',
-                  letterSpacing: '0.015em',
-                }}>Altar</span>
+                <span style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(14px, 2.2vw, 26px)', fontWeight: 300, fontStyle: 'italic', color: 'var(--ink-mid)' }}>The</span>
+                <span style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(28px, 4.5vw, 58px)', fontWeight: 600, color: 'var(--ink)', letterSpacing: '0.015em' }}>Altar</span>
               </span>
             </Link>
-
-            <p style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '9px',
-              fontWeight: 300,
-              letterSpacing: '0.26em',
-              textTransform: 'uppercase',
-              color: 'var(--ink-muted)',
-              margin: '10px 0 0',
-              opacity: 0.65,
-            }}>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', fontWeight: 300, letterSpacing: '0.26em', textTransform: 'uppercase', color: 'var(--ink-muted)', margin: '10px 0 0', opacity: 0.65 }}>
               Faith · Craft · The Life Between
             </p>
           </div>
 
-          {/* Section nav */}
-          <nav style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: 'clamp(14px, 3vw, 40px)',
-            padding: '16px 0',
-          }}>
+          <nav style={{ display: 'flex', justifyContent: 'center', gap: 'clamp(14px, 3vw, 40px)', padding: '16px 0' }}>
             {SECTIONS.map((s) => (
               <Link key={s.name} href={s.path} className="nav-link">{s.name}</Link>
             ))}
@@ -200,114 +119,42 @@ export default function HomePage() {
 
       <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px' }}>
 
-        {/* ── Hero — dark photograph on light page ─────────── */}
+        {/* ── Hero ─────────────────────────────────────────────── */}
         <section style={{ padding: '48px 0 40px' }}>
-          <div style={{
-            position: 'relative',
-            borderRadius: '2px',
-            overflow: 'hidden',
-            minHeight: 'clamp(300px, 42vw, 500px)',
-            display: 'flex',
-            alignItems: 'flex-end',
-            background: 'linear-gradient(155deg, #251407 0%, #1a0e05 30%, #0f0a05 60%, #0a0806 100%)',
-            boxShadow: '0 4px 32px rgba(26,18,8,0.18)',
-          }}>
-            {/* Grain */}
-            <div style={{
-              position: 'absolute', inset: 0, pointerEvents: 'none',
-              background: `repeating-linear-gradient(-45deg, transparent 0px, transparent 3px, rgba(200,130,10,0.012) 3px, rgba(200,130,10,0.012) 4px),
-                           repeating-linear-gradient(45deg, transparent 0px, transparent 5px, rgba(200,130,10,0.008) 5px, rgba(200,130,10,0.008) 6px)`,
-            }} />
-            {/* Amber glow */}
-            <div style={{
-              position: 'absolute', top: '-60px', right: '-40px',
-              width: '400px', height: '400px',
-              background: 'radial-gradient(circle, rgba(200,130,10,0.08) 0%, transparent 70%)',
-              pointerEvents: 'none',
-            }} />
-            {/* Vignette */}
-            <div style={{
-              position: 'absolute', inset: 0, pointerEvents: 'none',
-              background: 'linear-gradient(to top, rgba(10,8,6,0.97) 0%, rgba(10,8,6,0.55) 35%, rgba(10,8,6,0.1) 65%, transparent 100%)',
-            }} />
-            {/* Archive watermark */}
-            <div style={{
-              position: 'absolute', top: '20px', right: '24px',
-              fontFamily: 'var(--font-archive)',
-              fontSize: 'clamp(48px, 7vw, 96px)',
-              fontStyle: 'italic',
-              color: 'rgba(200,130,10,0.07)',
-              lineHeight: 1,
-              userSelect: 'none',
-            }}>Archive</div>
-
-            {/* Text overlay */}
+          <div style={{ position: 'relative', borderRadius: '2px', overflow: 'hidden', minHeight: 'clamp(300px, 42vw, 500px)', display: 'flex', alignItems: 'flex-end', background: 'linear-gradient(155deg, #251407 0%, #1a0e05 30%, #0f0a05 60%, #0a0806 100%)', boxShadow: '0 4px 32px rgba(26,18,8,0.18)' }}>
+            <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: `repeating-linear-gradient(-45deg, transparent 0px, transparent 3px, rgba(200,130,10,0.012) 3px, rgba(200,130,10,0.012) 4px), repeating-linear-gradient(45deg, transparent 0px, transparent 5px, rgba(200,130,10,0.008) 5px, rgba(200,130,10,0.008) 6px)` }} />
+            <div style={{ position: 'absolute', top: '-60px', right: '-40px', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(200,130,10,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', background: 'linear-gradient(to top, rgba(10,8,6,0.97) 0%, rgba(10,8,6,0.55) 35%, rgba(10,8,6,0.1) 65%, transparent 100%)' }} />
+            <div style={{ position: 'absolute', top: '20px', right: '24px', fontFamily: 'var(--font-archive)', fontSize: 'clamp(48px, 7vw, 96px)', fontStyle: 'italic', color: 'rgba(200,130,10,0.07)', lineHeight: 1, userSelect: 'none' }}>Archive</div>
             <div style={{ position: 'relative', padding: 'clamp(24px, 4vw, 48px)', maxWidth: '640px' }}>
-              <span className="section-pill" style={{ background: 'rgba(200,130,10,0.22)', color: '#E8C060', marginBottom: '14px', display: 'inline-block' }}>
-                {FEATURED.section}
-              </span>
-              <h2 style={{
-                fontFamily: 'var(--font-archive)',
-                fontSize: 'clamp(28px, 4.5vw, 58px)',
-                fontWeight: 400,
-                fontStyle: 'italic',
-                color: '#E8C060',
-                lineHeight: 1.1,
-                margin: '0 0 16px',
-              }}>
-                {FEATURED.headline}
-              </h2>
-              <p style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: 'clamp(13px, 1.4vw, 15px)',
-                fontWeight: 300,
-                color: '#C8A040',
-                lineHeight: 1.65,
-                margin: '0 0 24px',
-                maxWidth: '460px',
-              }}>
-                {FEATURED.dek}
-              </p>
+              <span className="section-pill" style={{ background: 'rgba(200,130,10,0.22)', color: '#E8C060', marginBottom: '14px', display: 'inline-block' }}>{FEATURED.section}</span>
+              <h2 style={{ fontFamily: 'var(--font-archive)', fontSize: 'clamp(28px, 4.5vw, 58px)', fontWeight: 400, fontStyle: 'italic', color: '#E8C060', lineHeight: 1.1, margin: '0 0 16px' }}>{FEATURED.headline}</h2>
+              <p style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(13px, 1.4vw, 15px)', fontWeight: 300, color: '#C8A040', lineHeight: 1.65, margin: '0 0 24px', maxWidth: '460px' }}>{FEATURED.dek}</p>
               <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', color: '#9A6A1A', letterSpacing: '0.08em' }}>
-                  {FEATURED.readTime}
-                </span>
-                <Link href={FEATURED.slug} style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '10px',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  color: '#C8820A',
-                  textDecoration: 'none',
-                  border: '0.5px solid rgba(200,130,10,0.4)',
-                  padding: '6px 16px',
-                  borderRadius: '20px',
-                  transition: 'all 0.2s',
-                }}>
-                  Read →
-                </Link>
+                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', color: '#9A6A1A', letterSpacing: '0.08em' }}>{FEATURED.readTime}</span>
+                <Link href={FEATURED.slug} style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#C8820A', textDecoration: 'none', border: '0.5px solid rgba(200,130,10,0.4)', padding: '6px 16px', borderRadius: '20px' }}>Read →</Link>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ── Section Divider ─────────────────────────────────── */}
         <SectionRule label="Latest" />
 
-        {/* ── Room grid ────────────────────────────────────────── */}
+        {/* ── Room grid — fixed 2 cols, no ghost divider ────────── */}
         <section style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          margin: '32px 0 56px',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
           border: '0.5px solid var(--border)',
           borderRadius: '2px',
           overflow: 'hidden',
+          margin: '32px 0 56px',
         }}>
-          {/* The Assignment room */}
-          <div style={{ background: 'var(--room-assignment)', padding: 'clamp(24px, 3vw, 40px)' }}>
+          {/* The Assignment */}
+          <div style={{ background: 'var(--room-assignment)', padding: 'clamp(28px, 3.5vw, 48px)' }}>
             <RoomHeader
               label="The Assignment"
               ornament="✦"
+              description="Theology of creativity & calling"
               accentColor="var(--accent-assignment)"
               fontVar="var(--font-assignment)"
             />
@@ -316,14 +163,12 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Divider */}
-          <div style={{ width: '0.5px', background: 'var(--border)' }} />
-
-          {/* The Altar room */}
-          <div style={{ background: 'var(--room-altar)', padding: 'clamp(24px, 3vw, 40px)' }}>
+          {/* The Altar */}
+          <div style={{ background: 'var(--room-altar)', padding: 'clamp(28px, 3.5vw, 48px)', borderLeft: '0.5px solid var(--border)', borderTop: 'none' }}>
             <RoomHeader
               label="The Altar"
               ornament="†"
+              description="Prayer, Scripture & the inner life"
               accentColor="var(--accent-altar)"
               fontVar="var(--font-altar)"
             />
@@ -340,118 +185,37 @@ export default function HomePage() {
             <span className="rule-ornament">📡 From the Scene</span>
             <div className="divider-line" />
           </div>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            border: '0.5px solid var(--border)',
-            borderRadius: '2px',
-            overflow: 'hidden',
-          }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', border: '0.5px solid var(--border)', borderRadius: '2px', overflow: 'hidden' }}>
             {SCENE_ITEMS.map((item, i) => (
               <Link key={i} href={item.link} className="scene-card">
-                <p style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '9px',
-                  letterSpacing: '0.12em',
-                  textTransform: 'uppercase',
-                  color: 'var(--ink-muted)',
-                  margin: '0 0 10px',
-                }}>{item.source}</p>
-                <p style={{
-                  fontFamily: 'var(--font-sans)',
-                  fontSize: '13px',
-                  fontWeight: 300,
-                  color: 'var(--ink-mid)',
-                  lineHeight: 1.65,
-                  margin: 0,
-                }}>{item.summary}</p>
+                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-muted)', margin: '0 0 10px' }}>{item.source}</p>
+                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '13px', fontWeight: 300, color: 'var(--ink-mid)', lineHeight: 1.65, margin: 0 }}>{item.summary}</p>
               </Link>
             ))}
           </div>
         </section>
 
         {/* ── Weekly Offering ──────────────────────────────────── */}
-        <section style={{
-          border: '0.5px solid var(--border)',
-          borderRadius: '2px',
-          padding: 'clamp(36px, 5vw, 64px) clamp(24px, 4vw, 56px)',
-          textAlign: 'center',
-          marginBottom: '64px',
-          position: 'relative',
-          overflow: 'hidden',
-          background: 'var(--parchment-mid)',
-        }}>
-          <div style={{
-            position: 'absolute', top: '50%', left: '50%',
-            transform: 'translate(-50%, -50%)',
-            fontFamily: 'var(--font-serif)',
-            fontSize: 'clamp(80px, 14vw, 200px)',
-            fontWeight: 600,
-            fontStyle: 'italic',
-            color: 'rgba(26,18,8,0.03)',
-            whiteSpace: 'nowrap',
-            userSelect: 'none',
-            pointerEvents: 'none',
-          }}>Offering</div>
+        <section style={{ border: '0.5px solid var(--border)', borderRadius: '2px', padding: 'clamp(36px, 5vw, 64px) clamp(24px, 4vw, 56px)', textAlign: 'center', marginBottom: '64px', position: 'relative', overflow: 'hidden', background: 'var(--parchment-mid)' }}>
+          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontFamily: 'var(--font-serif)', fontSize: 'clamp(80px, 14vw, 200px)', fontWeight: 600, fontStyle: 'italic', color: 'rgba(26,18,8,0.03)', whiteSpace: 'nowrap', userSelect: 'none', pointerEvents: 'none' }}>Offering</div>
           <div style={{ position: 'relative' }}>
             <p className="rule-ornament" style={{ marginBottom: '14px' }}>The Weekly Offering</p>
-            <h3 style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(26px, 3.5vw, 44px)',
-              fontWeight: 400,
-              fontStyle: 'italic',
-              color: 'var(--ink)',
-              margin: '0 0 14px',
-              lineHeight: 1.15,
-            }}>
-              One piece like this. Every Sunday.
-            </h3>
-            <p style={{
-              fontFamily: 'var(--font-sans)',
-              fontSize: '14px',
-              fontWeight: 300,
-              color: 'var(--ink-mid)',
-              lineHeight: 1.7,
-              margin: '0 auto 32px',
-              maxWidth: '420px',
-            }}>
-              Quietly, no noise. Faith and craft, made by hand. Join the readers who have been waiting for this.
-            </p>
+            <h3 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(26px, 3.5vw, 44px)', fontWeight: 400, fontStyle: 'italic', color: 'var(--ink)', margin: '0 0 14px', lineHeight: 1.15 }}>One piece like this. Every Sunday.</h3>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: '14px', fontWeight: 300, color: 'var(--ink-mid)', lineHeight: 1.7, margin: '0 auto 32px', maxWidth: '420px' }}>Quietly, no noise. Faith and craft, made by hand. Join the readers who have been waiting for this.</p>
             <NewsletterForm />
           </div>
         </section>
       </main>
 
-      {/* ── Footer ───────────────────────────────────────────── */}
       <footer style={{ borderTop: '0.5px solid var(--border)', padding: '32px 24px' }}>
-        <div style={{
-          maxWidth: '1100px', margin: '0 auto',
-          display: 'flex', alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap', gap: '12px',
-        }}>
-          <p style={{
-            fontFamily: 'var(--font-serif)',
-            fontSize: '14px',
-            fontStyle: 'italic',
-            color: 'var(--ink-muted)',
-            margin: 0, opacity: 0.7,
-          }}>The Atelier & The Altar</p>
-          <p style={{
-            fontFamily: 'var(--font-sans)',
-            fontSize: '9px',
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
-            color: 'var(--ink-muted)',
-            opacity: 0.45, margin: 0,
-          }}>A HearthLight Media Publication · Truth. Expressed. Fully.</p>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
+          <p style={{ fontFamily: 'var(--font-serif)', fontSize: '14px', fontStyle: 'italic', color: 'var(--ink-muted)', margin: 0, opacity: 0.7 }}>The Atelier & The Altar</p>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ink-muted)', opacity: 0.45, margin: 0 }}>A HearthLight Media Publication · Truth. Expressed. Fully.</p>
         </div>
       </footer>
     </div>
   )
 }
-
-// ── Sub-components ─────────────────────────────────────────────────
 
 function SectionRule({ label }: { label: string }) {
   return (
@@ -463,24 +227,41 @@ function SectionRule({ label }: { label: string }) {
   )
 }
 
-function RoomHeader({ label, ornament, accentColor, fontVar }: {
-  label: string; ornament: string; accentColor: string; fontVar: string
+function RoomHeader({ label, ornament, description, accentColor, fontVar }: {
+  label: string; ornament: string; description: string; accentColor: string; fontVar: string
 }) {
   return (
-    <div style={{ marginBottom: '24px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-        <span style={{ fontFamily: fontVar, fontSize: '16px', color: accentColor, opacity: 0.8 }}>
+    <div style={{ marginBottom: '32px' }}>
+      {/* Large section name in its characteristic font */}
+      <div style={{ marginBottom: '8px' }}>
+        <span style={{ fontFamily: fontVar, fontSize: 'clamp(10px, 1.2vw, 14px)', letterSpacing: '0.06em', color: accentColor, opacity: 0.8, display: 'block', marginBottom: '4px' }}>
           {ornament}
         </span>
-        <span style={{
+        <h2 style={{
           fontFamily: fontVar,
-          fontSize: '13px',
+          fontSize: 'clamp(28px, 3vw, 42px)',
           fontWeight: 400,
-          letterSpacing: '0.04em',
-          color: 'var(--ink-mid)',
-        }}>{label}</span>
+          color: 'var(--ink)',
+          margin: 0,
+          lineHeight: 1.1,
+          letterSpacing: fontVar.includes('cinzel') ? '0.06em' : '0.01em',
+        }}>
+          {label}
+        </h2>
+        <p style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize: '10px',
+          fontWeight: 300,
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          color: accentColor,
+          opacity: 0.7,
+          margin: '6px 0 0',
+        }}>
+          {description}
+        </p>
       </div>
-      <div style={{ height: '0.5px', background: accentColor, opacity: 0.25 }} />
+      <div style={{ height: '0.5px', background: accentColor, opacity: 0.25, marginTop: '14px' }} />
     </div>
   )
 }
@@ -495,29 +276,21 @@ function ArticleCard({ article, fontVar, isLast }: {
       <div style={{ borderBottom: isLast ? 'none' : '0.5px solid var(--border)', paddingBottom: isLast ? 0 : '28px' }}>
         <h3 className="article-headline" style={{
           fontFamily: fontVar,
-          fontSize: '19px',
+          fontSize: 'clamp(18px, 2vw, 24px)',
           fontWeight: 400,
           color: 'var(--ink)',
           lineHeight: 1.25,
           margin: '0 0 10px',
+          letterSpacing: fontVar.includes('cinzel') ? '0.04em' : '0',
         }}>
           {article.headline}
         </h3>
-        <p style={{
-          fontFamily: 'var(--font-sans)',
-          fontSize: '13px',
-          fontWeight: 300,
-          color: 'var(--ink-mid)',
-          lineHeight: 1.65,
-          margin: '0 0 10px',
-        }}>{article.dek}</p>
-        <span style={{
-          fontFamily: 'var(--font-sans)',
-          fontSize: '9px',
-          letterSpacing: '0.1em',
-          textTransform: 'uppercase',
-          color: 'var(--ink-muted)',
-        }}>{article.readTime}</span>
+        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '13px', fontWeight: 300, color: 'var(--ink-mid)', lineHeight: 1.65, margin: '0 0 10px' }}>
+          {article.dek}
+        </p>
+        <span style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-muted)' }}>
+          {article.readTime}
+        </span>
       </div>
     </Link>
   )
