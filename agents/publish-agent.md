@@ -83,7 +83,7 @@ File format:
 ```
 git add content/articles/[slug].md
 git commit -m "publish: [Title] ([Piece ID])"
-git push
+git push origin main
 ```
 
 If the push fails, stop and report the error. Do not update Notion.
