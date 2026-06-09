@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import { getArticleBySlug, getAllSlugs } from '@/lib/articles'
 import type { Metadata } from 'next'
 
+export const dynamicParams = true
+
 const SECTION_CONFIG: Record<string, {
   fontVar: string
   accentColor: string
