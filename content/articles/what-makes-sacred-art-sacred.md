@@ -4,7 +4,7 @@ dek: "The answer isn't in the subject. It isn't in the style. It's in the direct
 section: "the-archive"
 publishDate: "2026-06-08"
 readTime: "4 min read"
-heroImage: "https://www.atelierandaltar.com/images/what-makes-sacred-art-sacred.jpg"
+heroImage: "https://www.atelierandaltar.com/images/what-makes-sacred-art-sacred.png"
 heroImageAlt: "What Makes Sacred Art \"Sacred\"?"
 metaDescription: "Sacred art is defined not by subject or style, but by direction — where it points and what it forms in the viewer. Art becomes sacred when it turns the eye toward God, not itself."
 answerBox: "Sacred art is defined not by its subject, its style, or whether it was made for a church, but by its direction — where it points and what it forms in the viewer. Art becomes sacred when it turns the eye toward God rather than toward itself or its maker. This principle holds from the catacombs to the present."

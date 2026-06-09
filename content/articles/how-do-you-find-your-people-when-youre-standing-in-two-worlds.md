@@ -4,7 +4,7 @@ dek: "The isolation isn't a personal failure. Here's what to look for — and wh
 section: "the-guild"
 publishDate: "2026-06-08"
 readTime: "3 min read"
-heroImage: "https://www.atelierandaltar.com/images/how-do-you-find-your-people-two-worlds.jpg"
+heroImage: "https://www.atelierandaltar.com/images/how-do-you-find-your-people-two-worlds.png"
 heroImageAlt: "How Do You Find Your People When You're Standing in Two Worlds?"
 metaDescription: "The isolation Christian creatives feel isn't personal failure — it's structural. Too faithful for the art world, too arty for church. Here's what to look for."
 answerBox: "The isolation many Christian creatives feel isn't a personal failure — it's a structural reality. Too faithful for the art world, too arty for the church. Finding your people starts with naming that honestly, then knowing what markers to look for in communities that hold both a serious faith and a serious creative practice without asking you to apologize for either."
