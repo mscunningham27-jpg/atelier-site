@@ -4,7 +4,7 @@ dek: "On aesthetic hunger, calling, and the one question most Christian artists 
 section: the-assignment
 publishDate: "2026-06-01"
 readTime: "6 min read"
-heroImage: "https://www.atelierandaltar.com/images/is-it-vain-to-want-my-work-to-be-beautiful.jpg"
+heroImage: "https://www.atelierandaltar.com/images/is-it-vain-to-want-my-work-to-be-beautiful.png"
 heroImageAlt: "A painter's hand resting near a canvas in golden afternoon light"
 metaDescription: "Is wanting your creative work to be beautiful a form of vanity? A theological look at aesthetic hunger, artistic calling, and what the Bible actually says about beauty."
 ---
