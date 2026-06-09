@@ -2,6 +2,12 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getArticleBySlug, getAllSlugs } from '@/lib/articles'
 import type { Metadata } from 'next'
+import ReactMarkdown from 'react-markdown'
+import type { Components } from 'react-markdown'
+
+export const dynamicParams = true
+export const revalidate = 60
+
 const SECTION_CONFIG: Record<string, {
   fontVar: string
   accentColor: string
@@ -64,9 +70,6 @@ const SECTIONS = [
   { name: 'The Guild',      path: '/the-guild' },
 ]
 
-export const dynamicParams = true
-export const revalidate = 60
-
 export async function generateStaticParams() {
   return getAllSlugs().map(slug => ({ slug }))
 }
@@ -93,11 +96,80 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
   const config = SECTION_CONFIG[article.section] ?? SECTION_CONFIG['the-assignment']
 
-  // Parse content into paragraphs (simple renderer for plain markdown body)
-  const paragraphs = article.content
-    .split(/\n\n+/)
-    .map(p => p.trim())
-    .filter(Boolean)
+  const markdownComponents: Components = {
+    p: ({ children }) => (
+      <p style={{
+        fontFamily: 'var(--font-sans)',
+        fontSize: 'clamp(15px, 1.6vw, 17px)',
+        fontWeight: 300,
+        color: 'var(--ink)',
+        lineHeight: 1.85,
+        margin: '0 0 28px',
+      }}>
+        {children}
+      </p>
+    ),
+    h2: ({ children }) => (
+      <h2 style={{
+        fontFamily: config.fontVar,
+        fontSize: 'clamp(20px, 2.4vw, 28px)',
+        fontWeight: 400,
+        color: 'var(--ink)',
+        margin: '48px 0 16px',
+        lineHeight: 1.2,
+      }}>
+        {children}
+      </h2>
+    ),
+    h3: ({ children }) => (
+      <h3 style={{
+        fontFamily: config.fontVar,
+        fontSize: 'clamp(17px, 2vw, 22px)',
+        fontWeight: 400,
+        color: 'var(--ink-mid)',
+        margin: '36px 0 12px',
+        lineHeight: 1.3,
+      }}>
+        {children}
+      </h3>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote style={{
+        borderLeft: `2px solid ${config.accentColor}`,
+        margin: '36px 0',
+        padding: '4px 0 4px 24px',
+      }}>
+        <div style={{
+          fontFamily: config.fontVar,
+          fontSize: 'clamp(18px, 2.2vw, 24px)',
+          fontStyle: 'italic',
+          fontWeight: 400,
+          color: 'var(--ink)',
+          lineHeight: 1.5,
+        }}>
+          {children}
+        </div>
+      </blockquote>
+    ),
+    em: ({ children }) => (
+      <em style={{ fontStyle: 'italic', color: 'inherit' }}>{children}</em>
+    ),
+    strong: ({ children }) => (
+      <strong style={{ fontWeight: 600, color: 'var(--ink)' }}>{children}</strong>
+    ),
+    a: ({ href, children }) => (
+      <a href={href} style={{ color: config.accentColor, textDecoration: 'underline', textDecorationColor: 'transparent', transition: 'text-decoration-color 0.2s' }}>
+        {children}
+      </a>
+    ),
+    hr: () => (
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', margin: '40px 0' }}>
+        <div style={{ height: '0.5px', background: 'var(--border)', flex: 1 }} />
+        <span style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink-muted)' }}>{config.ornament}</span>
+        <div style={{ height: '0.5px', background: 'var(--border)', flex: 1 }} />
+      </div>
+    ),
+  }
 
   return (
     <div style={{ backgroundColor: 'var(--parchment)', minHeight: '100vh' }}>
@@ -199,55 +271,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         {/* ── Article body ─────────────────────────────────────── */}
         <article style={{ paddingTop: article.heroImage ? '0' : '36px' }}>
-          {paragraphs.map((para, i) => {
-            // H2
-            if (para.startsWith('## ')) {
-              return (
-                <h2 key={i} style={{ fontFamily: config.fontVar, fontSize: 'clamp(20px, 2.4vw, 28px)', fontWeight: 400, color: 'var(--ink)', margin: '48px 0 16px', lineHeight: 1.2 }}>
-                  {para.replace(/^## /, '')}
-                </h2>
-              )
-            }
-            // H3
-            if (para.startsWith('### ')) {
-              return (
-                <h3 key={i} style={{ fontFamily: config.fontVar, fontSize: 'clamp(17px, 2vw, 22px)', fontWeight: 400, color: 'var(--ink-mid)', margin: '36px 0 12px', lineHeight: 1.3 }}>
-                  {para.replace(/^### /, '')}
-                </h3>
-              )
-            }
-            // Blockquote
-            if (para.startsWith('> ')) {
-              return (
-                <blockquote key={i} style={{ borderLeft: `2px solid ${config.accentColor}`, margin: '36px 0', padding: '4px 0 4px 24px' }}>
-                  <p style={{ fontFamily: config.fontVar, fontSize: 'clamp(18px, 2.2vw, 24px)', fontStyle: 'italic', fontWeight: 400, color: 'var(--ink)', lineHeight: 1.5, margin: 0 }}>
-                    {para.replace(/^> /, '')}
-                  </p>
-                </blockquote>
-              )
-            }
-            // Scripture / pull quote (lines starting with —)
-            if (para.startsWith('— ') || para.startsWith('— ')) {
-              return (
-                <p key={i} style={{ fontFamily: 'var(--font-sans)', fontSize: '11px', letterSpacing: '0.1em', color: 'var(--ink-muted)', textAlign: 'right', margin: '-16px 0 32px', fontStyle: 'italic' }}>
-                  {para}
-                </p>
-              )
-            }
-            // Default paragraph
-            return (
-              <p key={i} style={{
-                fontFamily: 'var(--font-sans)',
-                fontSize: 'clamp(15px, 1.6vw, 17px)',
-                fontWeight: 300,
-                color: 'var(--ink)',
-                lineHeight: 1.85,
-                margin: '0 0 28px',
-              }}>
-                {para}
-              </p>
-            )
-          })}
+          <ReactMarkdown components={markdownComponents}>
+            {article.content}
+          </ReactMarkdown>
         </article>
 
         {/* ── Section divider ──────────────────────────────────── */}
