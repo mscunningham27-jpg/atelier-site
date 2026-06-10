@@ -13,40 +13,34 @@
   --ink-muted:    #8C6830;   /* muted brown — labels, metadata */
 
   /* ── Accent ────────────────────────────────────────────────────── */
-  --hearthgold:   #C8820A;
+  --hearthgold:    #C8820A;
   --hearthgold-lt: rgba(200, 130, 10, 0.12);
-  --border:       rgba(26, 18, 8, 0.12);
+  --border:        rgba(26, 18, 8, 0.12);
   --border-strong: rgba(26, 18, 8, 0.22);
 
   /* ── Section room tints ────────────────────────────────────────── */
-  --room-assignment: #EDE7D6;   /* warm sage-cream */
-  --room-craft:      #EAE2D2;   /* earthy cream */
-  --room-archive:    #EDE6D0;   /* aged paper */
-  --room-altar:      #E8E6EC;   /* faint cool blue — liturgical */
-  --room-guild:      #EDE8DB;   /* warm neutral */
+  --room-assignment: #F2EDE0;   /* warm parchment */
+  --room-craft:      #F5F1E8;   /* light earthy cream */
+  --room-archive:    #EDE8D8;   /* aged paper */
+  --room-altar:      #E6E0D4;   /* bone/vellum — ancient manuscript */
+  --room-guild:      #F7F3EC;   /* warm neutral */
 
   /* ── Section accent colors ─────────────────────────────────────── */
-  --accent-assignment: #6A7A5A;   /* sage */
-  --accent-craft:      #A06840;   /* terracotta */
+  --accent-assignment: #5A4A2A;   /* warm ink */
+  --accent-craft:      #7A5A30;   /* terracotta brown */
   --accent-archive:    #C8820A;   /* hearthgold */
-  --accent-altar:      #6878A8;   /* muted blue */
+  --accent-altar:      #4A3A28;   /* deep warm brown — solemn */
   --accent-guild:      #A08050;   /* warm tan */
 
   /* ── Section fonts ─────────────────────────────────────────────── */
   /*
-    Assignment  — EB Garamond:       humanist, warm, theological journal
-    Craft       — Libre Baskerville: sturdy, practical, workshop
-    Archive     — IM Fell English:   antiquarian, aged, historical
-    Altar       — Cinzel:            inscriptional, liturgical, devotional
-    Guild       — Lora:              warm, italic-rich, human
+    next/font injects --font-assignment, --font-craft, --font-archive,
+    --font-altar, --font-guild directly via the variable props in layout.tsx.
+    Do NOT redefine them here — that overwrites the injected values.
+    --font-serif and --font-sans are aliases for the two base fonts.
   */
-  --font-serif:       var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
-  --font-sans:        var(--font-jost), 'Jost', system-ui, sans-serif;
-  --font-assignment:  var(--font-eb-garamond), 'EB Garamond', Georgia, serif;
-  --font-craft:       var(--font-libre-baskerville), 'Libre Baskerville', Georgia, serif;
-  --font-archive:     var(--font-im-fell-english), 'IM Fell English', Georgia, serif;
-  --font-altar:       var(--font-cinzel), 'Cinzel', Georgia, serif;
-  --font-guild:       var(--font-lora), 'Lora', Georgia, serif;
+  --font-serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+  --font-sans:  var(--font-jost), 'Jost', system-ui, sans-serif;
 }
 
 /* ── Reset & base ────────────────────────────────────────────────── */
