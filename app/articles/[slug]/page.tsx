@@ -4,6 +4,8 @@ import { getArticleBySlug, getAllSlugs } from '@/lib/articles'
 import type { Metadata } from 'next'
 import ReactMarkdown from 'react-markdown'
 import type { Components } from 'react-markdown'
+import SiteShell from '@/components/SiteShell'
+import NewsletterForm from '@/components/NewsletterForm'
 
 export const dynamicParams = true
 export const revalidate = 60
@@ -51,24 +53,6 @@ const SECTION_CONFIG: Record<string, {
     path: '/the-guild',
   },
 }
-
-const ATELIER_LETTERS = [
-  { char: 'A', weight: 300, scale: 0.91, italic: false, offset: 3,  color: '#8C6830' },
-  { char: 'T', weight: 700, scale: 1.07, italic: false, offset: 0,  color: '#1C1008' },
-  { char: 'E', weight: 400, scale: 0.96, italic: true,  offset: -2, color: '#3A2810' },
-  { char: 'L', weight: 600, scale: 1.03, italic: false, offset: 0,  color: '#1C1008' },
-  { char: 'I', weight: 300, scale: 0.89, italic: false, offset: 4,  color: '#C8820A' },
-  { char: 'E', weight: 500, scale: 1.05, italic: true,  offset: -1, color: '#3A2810' },
-  { char: 'R', weight: 400, scale: 0.98, italic: false, offset: 0,  color: '#1C1008' },
-]
-
-const SECTIONS = [
-  { name: 'The Assignment', path: '/the-assignment' },
-  { name: 'The Craft',      path: '/the-craft' },
-  { name: 'The Archive',    path: '/the-archive' },
-  { name: 'The Altar',      path: '/the-altar' },
-  { name: 'The Guild',      path: '/the-guild' },
-]
 
 export async function generateStaticParams() {
   return getAllSlugs().map(slug => ({ slug }))
@@ -172,44 +156,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   }
 
   return (
-    <div style={{ backgroundColor: 'var(--parchment)', minHeight: '100vh' }}>
-
-      {/* ── Header ─────────────────────────────────────────────── */}
-      <header style={{ borderBottom: '0.5px solid var(--border)' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '28px 24px 0' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '28px' }}>
-            <div className="divider-line" />
-            <span className="rule-ornament" style={{ fontSize: '8px', letterSpacing: '0.28em' }}>HearthLight Media</span>
-            <div className="divider-line" />
-          </div>
-          <div style={{ textAlign: 'center', marginBottom: '20px' }}>
-            <Link href="/" style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'baseline', flexWrap: 'wrap', justifyContent: 'center', gap: 0 }}>
-              <span style={{ fontFamily: 'var(--font-sans)', fontSize: 'clamp(9px, 1.2vw, 13px)', fontWeight: 300, letterSpacing: '0.35em', textTransform: 'uppercase', color: 'var(--ink-muted)', marginRight: 'clamp(6px, 1vw, 14px)', position: 'relative', top: '-4px' }}>THE</span>
-              <span style={{ display: 'inline-flex', alignItems: 'baseline', marginRight: 'clamp(6px, 1.2vw, 16px)' }}>
-                {ATELIER_LETTERS.map((l, i) => (
-                  <span key={i} className="masthead-letter" style={{ fontSize: `clamp(${Math.round(28 * l.scale)}px, ${(4.5 * l.scale).toFixed(2)}vw, ${Math.round(58 * l.scale)}px)`, fontWeight: l.weight, fontStyle: l.italic ? 'italic' : 'normal', color: l.color, position: 'relative', top: `${l.offset}px`, letterSpacing: '0.01em' }}>
-                    {l.char}
-                  </span>
-                ))}
-              </span>
-              <span style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(36px, 6vw, 80px)', fontWeight: 400, fontStyle: 'italic', color: 'var(--hearthgold)', lineHeight: 1, position: 'relative', top: 'clamp(6px, 1.2vw, 16px)', margin: '0 clamp(4px, 0.8vw, 10px)' }}>&</span>
-              <span style={{ display: 'inline-flex', alignItems: 'baseline', gap: 'clamp(4px, 0.6vw, 8px)', marginLeft: 'clamp(2px, 0.4vw, 6px)' }}>
-                <span style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(14px, 2.2vw, 26px)', fontWeight: 300, fontStyle: 'italic', color: 'var(--ink-mid)' }}>The</span>
-                <span style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(28px, 4.5vw, 58px)', fontWeight: 600, color: 'var(--ink)', letterSpacing: '0.015em' }}>Altar</span>
-              </span>
-            </Link>
-            <p style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', fontWeight: 300, letterSpacing: '0.26em', textTransform: 'uppercase', color: 'var(--ink-muted)', margin: '10px 0 0', opacity: 0.65 }}>
-              Faith · Craft · The Life Between
-            </p>
-          </div>
-          <nav style={{ display: 'flex', justifyContent: 'center', gap: 'clamp(14px, 3vw, 40px)', padding: '16px 0' }}>
-            {SECTIONS.map((s) => (
-              <Link key={s.name} href={s.path} className="nav-link">{s.name}</Link>
-            ))}
-          </nav>
-        </div>
-      </header>
-
+    <SiteShell activePath={config.path}>
       <main style={{ maxWidth: '740px', margin: '0 auto', padding: '0 24px 80px' }}>
 
         {/* ── Breadcrumb ───────────────────────────────────────── */}
@@ -284,18 +231,19 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         </div>
 
         {/* ── Newsletter CTA ───────────────────────────────────── */}
-        <div style={{ background: 'var(--parchment-mid)', border: '0.5px solid var(--border)', borderRadius: '2px', padding: 'clamp(28px, 4vw, 48px)', textAlign: 'center' }}>
-          <p className="rule-ornament" style={{ marginBottom: '12px' }}>The Weekly Offering</p>
-          <p style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(20px, 2.5vw, 30px)', fontWeight: 400, fontStyle: 'italic', color: 'var(--ink)', margin: '0 0 12px', lineHeight: 1.2 }}>
-            One piece like this. Every Sunday.
-          </p>
-          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '13px', fontWeight: 300, color: 'var(--ink-mid)', lineHeight: 1.7, margin: '0 auto 28px', maxWidth: '380px' }}>
-            Quietly, no noise. Faith and craft, made by hand.
-          </p>
-          <Link href="/#newsletter" className="read-btn">
-            Join the Offering →
-          </Link>
-        </div>
+        <section style={{ background: '#3a2e20', padding: 'clamp(32px,4vw,52px) clamp(24px,4vw,48px)', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', fontFamily: 'var(--font-serif)', fontSize: 'clamp(60px,10vw,140px)', fontWeight: 600, fontStyle: 'italic', color: 'rgba(255,240,200,0.04)', whiteSpace: 'nowrap', userSelect: 'none', pointerEvents: 'none' }}>Offering</div>
+          <div style={{ position: 'relative' }}>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: '8.5px', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#9a7d3a', margin: '0 0 12px' }}>The Weekly Offering</p>
+            <p style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(20px,2.5vw,32px)', fontWeight: 400, fontStyle: 'italic', color: '#f0e8d4', margin: '0 0 12px', lineHeight: 1.2 }}>
+              One piece like this, once a week. Quietly, no noise.
+            </p>
+            <p style={{ fontFamily: 'var(--font-sans)', fontSize: '13px', fontWeight: 300, color: 'rgba(200,180,140,0.75)', lineHeight: 1.7, margin: '0 auto 24px', maxWidth: '360px' }}>
+              Faith, craft, and the life between — in your inbox Sunday mornings.
+            </p>
+            <NewsletterForm />
+          </div>
+        </section>
 
         {/* ── Back to section ──────────────────────────────────── */}
         <div style={{ marginTop: '40px', textAlign: 'center' }}>
@@ -305,13 +253,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         </div>
 
       </main>
-
-      <footer style={{ borderTop: '0.5px solid var(--border)', padding: '32px 24px' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
-          <p style={{ fontFamily: 'var(--font-serif)', fontSize: '14px', fontStyle: 'italic', color: 'var(--ink-muted)', margin: 0, opacity: 0.7 }}>The Atelier & The Altar</p>
-          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--ink-muted)', opacity: 0.45, margin: 0 }}>A HearthLight Media Publication · Truth. Expressed. Fully.</p>
-        </div>
-      </footer>
-    </div>
+    </SiteShell>
   )
 }
