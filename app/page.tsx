@@ -104,6 +104,11 @@ export default function HomePage() {
           </div>
         )}
 
+        {/* ── Latest — for returning readers ────────────────── */}
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px' }}>
+          <LatestStrip articles={all.slice(0, 3)} />
+        </div>
+
         {/* ── From the Scene ────────────────────────────────── */}
         <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px' }}>
           <Divider label="↗ From the Scene" />
@@ -271,6 +276,113 @@ function Divider({ label }: { label: string }) {
       <div className="divider-line" />
       <span className="rule-ornament">{label}</span>
       <div className="divider-line" />
+    </div>
+  )
+}
+
+// ── Latest strip ─────────────────────────────────────────────────────────────
+
+const SECTION_FONT_MAP: Record<string, string> = {
+  'the-assignment': 'var(--font-assignment)',
+  'the-craft':      'var(--font-craft)',
+  'the-archive':    'var(--font-archive)',
+  'the-altar':      'var(--font-altar)',
+  'the-guild':      'var(--font-guild)',
+}
+
+const SECTION_ACCENT_MAP: Record<string, string> = {
+  'the-assignment': 'var(--accent-assignment)',
+  'the-craft':      'var(--accent-craft)',
+  'the-archive':    'var(--accent-archive)',
+  'the-altar':      'var(--accent-altar)',
+  'the-guild':      'var(--accent-guild)',
+}
+
+function LatestStrip({ articles }: { articles: Article[] }) {
+  if (articles.length === 0) return null
+
+  // Format date as relative if within 14 days, otherwise short date
+  function freshLabel(dateStr: string): string {
+    if (!dateStr) return ''
+    const published = new Date(dateStr)
+    const now = new Date()
+    const days = Math.floor((now.getTime() - published.getTime()) / (1000 * 60 * 60 * 24))
+    if (days === 0) return 'Today'
+    if (days === 1) return 'Yesterday'
+    if (days < 8)  return `${days} days ago`
+    if (days < 15) return 'This week'
+    return published.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+  }
+
+  return (
+    <div style={{ marginBottom: '0' }}>
+      <Divider label="Latest" />
+      <div style={{ border: '0.5px solid var(--border)' }}>
+        {articles.map((article, i) => {
+          const font   = SECTION_FONT_MAP[article.section]   ?? 'var(--font-serif)'
+          const accent = SECTION_ACCENT_MAP[article.section] ?? 'var(--hearthgold)'
+          const isLast = i === articles.length - 1
+          return (
+            <Link
+              key={article.slug}
+              href={`/articles/${article.slug}`}
+              className="article-link"
+              style={{
+                textDecoration: 'none',
+                display: 'grid',
+                gridTemplateColumns: article.heroImage ? '120px 1fr auto' : '1fr auto',
+                alignItems: 'stretch',
+                borderBottom: isLast ? 'none' : '0.5px solid var(--border)',
+                background: i === 0 ? 'var(--parchment-mid)' : 'var(--parchment)',
+                minHeight: '100px',
+              }}
+            >
+              {/* Thumbnail */}
+              {article.heroImage && (
+                <div style={{ overflow: 'hidden', position: 'relative' }}>
+                  <img
+                    src={article.heroImage}
+                    alt={article.heroImageAlt}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+              )}
+
+              {/* Content */}
+              <div style={{ padding: 'clamp(16px,2vw,24px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                  <span style={{ fontFamily: 'var(--font-sans)', fontSize: '8px', letterSpacing: '0.16em', textTransform: 'uppercase', color: accent }}>{article.sectionLabel}</span>
+                  {article.mood && (
+                    <>
+                      <span style={{ color: 'var(--border-strong)', fontSize: '8px' }}>·</span>
+                      <span style={{ fontFamily: 'var(--font-sans)', fontSize: '8px', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--ink-muted)', opacity: 0.7 }}>{article.mood}</span>
+                    </>
+                  )}
+                </div>
+                <h3
+                  className="article-headline"
+                  style={{ fontFamily: font, fontSize: 'clamp(16px,1.8vw,22px)', fontWeight: 400, color: 'var(--ink)', lineHeight: 1.25, margin: '0 0 7px' }}
+                >
+                  {article.title}
+                </h3>
+                <p style={{ fontFamily: 'var(--font-serif)', fontSize: '13px', fontStyle: 'italic', fontWeight: 300, color: 'var(--ink-mid)', lineHeight: 1.5, margin: 0 }}>
+                  {article.dek}
+                </p>
+              </div>
+
+              {/* Meta — right column */}
+              <div style={{ padding: 'clamp(16px,2vw,24px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'space-between', minWidth: '80px' }}>
+                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '8.5px', letterSpacing: '0.1em', color: 'var(--hearthgold)', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>
+                  {freshLabel(article.publishDate)}
+                </span>
+                <span style={{ fontFamily: 'var(--font-sans)', fontSize: '9px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--ink-muted)', whiteSpace: 'nowrap' }}>
+                  {article.readTime}
+                </span>
+              </div>
+            </Link>
+          )
+        })}
+      </div>
     </div>
   )
 }
