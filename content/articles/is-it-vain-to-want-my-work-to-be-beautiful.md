@@ -7,6 +7,21 @@ readTime: "6 min read"
 heroImage: "https://www.atelierandaltar.com/images/is-it-vain-to-want-my-work-to-be-beautiful.png"
 heroImageAlt: "A painter's hand resting near a canvas in golden afternoon light"
 metaDescription: "Is wanting your creative work to be beautiful a form of vanity? A theological look at aesthetic hunger, artistic calling, and what the Bible actually says about beauty."
+issueNumber: "I"
+issueTheme: "Beauty Under Judgment"
+featuredPlacement: "opening-essay"
+pieceType: "essay"
+mood: "contemplative / luminous"
+pullQuote: "Wanting your work to be beautiful isn't vanity. Beauty is one of the oldest ways the church has said true out loud."
+studioWall: "Make the thing with reverence. Then let it be judged by love."
+closingRitual: "For the Studio Wall"
+tags:
+  - "Beauty"
+  - "Vocation"
+  - "Calling"
+  - "Sacred Art"
+
+author: "The Atelier & The Altar"
 ---
 
 There is a question most Christian artists carry quietly, and almost none of them ask out loud.

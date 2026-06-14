@@ -9,6 +9,21 @@ heroImageAlt: "What Makes Sacred Art \"Sacred\"?"
 metaDescription: "Sacred art is defined not by subject or style, but by direction — where it points and what it forms in the viewer. Art becomes sacred when it turns the eye toward God, not itself."
 answerBox: "Sacred art is defined not by its subject, its style, or whether it was made for a church, but by its direction — where it points and what it forms in the viewer. Art becomes sacred when it turns the eye toward God rather than toward itself or its maker. This principle holds from the catacombs to the present."
 pieceId: "ATL-2"
+issueNumber: "I"
+issueTheme: "Beauty Under Judgment"
+featuredPlacement: "object-feature"
+pieceType: "essay"
+mood: "curatorial / serious"
+pullQuote: "Sacred is a direction, not a style. It is a matter of where a thing points and what it forms in us."
+studioWall: "Sacred is direction, not style. What does your work point toward?"
+closingRitual: "For the Studio Wall"
+tags:
+  - "Sacred Art"
+  - "Beauty"
+  - "Theology"
+  - "Christian Art"
+
+author: "The Atelier & The Altar"
 ---
 
 **TL;DR / Answer Box**

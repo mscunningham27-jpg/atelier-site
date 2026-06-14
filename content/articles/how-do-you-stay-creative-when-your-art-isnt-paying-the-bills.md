@@ -9,6 +9,21 @@ heroImageAlt: "How Do You Stay Creative When Your Art Isn't Paying the Bills?"
 metaDescription: "Paul made tents while planting churches. The bi-vocational creative life isn't failure — it's one of the oldest traditions in the faith."
 answerBox: "Staying creative when your art doesn't pay isn't failure — it's faithfulness. Paul made tents while planting churches; his craft supported his calling. The bi-vocational life is one of the oldest traditions in the faith. What sustains creativity isn't a revenue threshold; it's a posture: doing the work with whatever time you have, as for the Lord."
 pieceId: "ATL-28"
+issueNumber: "I"
+issueTheme: "Beauty Under Judgment"
+featuredPlacement: "hard-question"
+pieceType: "essay"
+mood: "sturdy / honest"
+pullQuote: "Paul made tents. That didn't make him less an apostle. Your day job is not a confession of failure."
+studioWall: "The calling and the means of sustaining it are separate questions. One does not determine the other."
+closingRitual: "For the Studio Wall"
+tags:
+  - "Craft"
+  - "Vocation"
+  - "Discipline"
+  - "Bi-vocational"
+
+author: "The Atelier & The Altar"
 ---
 
 **TL;DR / Answer Box**

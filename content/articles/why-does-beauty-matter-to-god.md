@@ -9,6 +9,21 @@ heroImageAlt: "Why Does Beauty Matter to God?"
 metaDescription: "Beauty isn't ornamental to the faith — it's woven into God's character, his commands, and the Incarnation. From Psalm 27 to Bezalel to the Word made flesh."
 answerBox: "Beauty matters to God because it is woven into who he is and what he made. Scripture shows God commanding beauty in worship (Exodus 28), attributing beauty to himself (Psalm 27:4), and filling an artist with his Spirit to make beautiful things (Exodus 31). Beauty isn't decoration on the faith — it is one of the oldest ways God has said *true* out loud."
 pieceId: "ATL-1"
+issueNumber: "I"
+issueTheme: "Beauty Under Judgment"
+featuredPlacement: "opening-essay"
+pieceType: "essay"
+mood: "luminous / theological"
+pullQuote: "Beauty is not proof that the work is holy. But holy work need not be afraid of beauty."
+studioWall: "Beauty is not decoration. It is one of the oldest languages truth has spoken."
+closingRitual: "For the Studio Wall"
+tags:
+  - "Beauty"
+  - "Theology"
+  - "Sacred Art"
+  - "Worship"
+
+author: "The Atelier & The Altar"
 ---
 
 **TL;DR / Answer Box**

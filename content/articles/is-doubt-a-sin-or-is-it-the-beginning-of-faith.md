@@ -9,6 +9,21 @@ heroImageAlt: "Is Doubt a Sin, or Is It the Beginning of Faith?"
 metaDescription: "Jesus met Thomas's doubt with his wounds, not a rebuke. Habakkuk questioned God and received an answer. Here's what Scripture says about doubt and faith."
 answerBox: "Doubt is not named as a sin in Scripture. Jesus met Thomas's doubt with his wounds, not a rebuke. Habakkuk questioned God and received an answer. \"I believe; help my unbelief\" (Mark 9:24) is a prayer that named doubt and was immediately heard. The Bible's instruction for how to treat doubters is not condemnation — it is mercy (Jude 22)."
 pieceId: "ATL-24"
+issueNumber: "I"
+issueTheme: "Beauty Under Judgment"
+featuredPlacement: "hard-question"
+pieceType: "essay"
+mood: "severe / tender"
+pullQuote: "The Bible does not treat doubt as the opposite of faith. It treats doubt as the place where faith is tested and sometimes deepened."
+studioWall: "Bring the honest question. The psalmist did."
+closingRitual: "For the Studio Wall"
+tags:
+  - "Doubt"
+  - "Faith"
+  - "Lament"
+  - "Scripture"
+
+author: "The Atelier & The Altar"
 ---
 
 **TL;DR / Answer Box**

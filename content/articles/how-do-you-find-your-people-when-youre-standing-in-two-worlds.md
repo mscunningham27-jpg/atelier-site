@@ -9,6 +9,21 @@ heroImageAlt: "How Do You Find Your People When You're Standing in Two Worlds?"
 metaDescription: "The isolation Christian creatives feel isn't personal failure — it's structural. Too faithful for the art world, too arty for church. Here's what to look for."
 answerBox: "The isolation many Christian creatives feel isn't a personal failure — it's a structural reality. Too faithful for the art world, too arty for the church. Finding your people starts with naming that honestly, then knowing what markers to look for in communities that hold both a serious faith and a serious creative practice without asking you to apologize for either."
 pieceId: "ATL-25"
+issueNumber: "I"
+issueTheme: "Beauty Under Judgment"
+featuredPlacement: "guild-feature"
+pieceType: "essay"
+mood: "tender / honest"
+pullQuote: "The loneliness is real. So is the company of everyone who has ever stood in two rooms at once."
+studioWall: "You are not the only one standing in two rooms. Look for the others."
+closingRitual: "For the Studio Wall"
+tags:
+  - "Community"
+  - "Identity"
+  - "Calling"
+  - "Belonging"
+
+author: "The Atelier & The Altar"
 ---
 
 **TL;DR / Answer Box**

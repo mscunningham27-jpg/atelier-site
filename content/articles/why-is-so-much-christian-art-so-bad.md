@@ -9,6 +9,21 @@ heroImageAlt: "Why Is So Much Christian Art So Bad?"
 metaDescription: "The problem isn't sincerity — it's the confusion of aims. From Caravaggio to the Christian retail market: what went wrong, and what great sacred art does differently."
 answerBox: "Weak Christian art tends to substitute emotional reassurance for honest truth-telling. The problem isn't sincerity — it's the confusion of aims. Art made primarily to comfort rather than confront loses the very quality that made the greatest sacred art powerful: the refusal to lie about what it costs to believe."
 pieceId: "ATL-8"
+issueNumber: "I"
+issueTheme: "Beauty Under Judgment"
+featuredPlacement: "hard-question"
+pieceType: "essay"
+mood: "exacting / honest"
+pullQuote: "The problem is not that Christian artists lack talent. The problem is that the culture they work inside has stopped expecting excellence."
+studioWall: "Excellence is not pride. It is faithfulness to the work itself."
+closingRitual: "For the Studio Wall"
+tags:
+  - "Christian Art"
+  - "Excellence"
+  - "Craft"
+  - "Culture"
+
+author: "The Atelier & The Altar"
 ---
 
 **TL;DR / Answer Box**
