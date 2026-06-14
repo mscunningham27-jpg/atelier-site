@@ -59,7 +59,7 @@ export default function HomePage() {
   const remaining = all.filter(a => !tableauxSlugs.has(a.slug))
 
   return (
-    <SiteShell>
+    <SiteShell mastheadState="ceremonial" issueLabel={`Issue ${ISSUE.number} · ${ISSUE.theme} · ${ISSUE.season}`}>
       <main>
 
         {/* ── Issue identity band ─────────────────────────────── */}

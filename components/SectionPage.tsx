@@ -25,7 +25,7 @@ export default function SectionPage({ config, articles }: SectionPageProps) {
   const [feature, ...rest] = articles
 
   return (
-    <SiteShell activePath={path}>
+    <SiteShell activePath={path} mastheadState="condensed">
       <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px 80px' }}>
 
         {/* ── Section header band ───────────────────────────────── */}

@@ -108,7 +108,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     : null
 
   return (
-    <SiteShell activePath={config.path}>
+    <SiteShell activePath={config.path} mastheadState="whisper">
 
       {/* Drop cap CSS injected globally for this page */}
       <style>{`
