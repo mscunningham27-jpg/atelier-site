@@ -24,6 +24,7 @@ export type Article = {
   pieceType?: string
   mood?: string
   respite?: boolean
+  contentFormat?: string
   // Editorial assets
   pullQuote?: string
   studioWall?: string
@@ -91,6 +92,7 @@ export function getArticleBySlug(slug: string): Article | null {
     pieceType:        data.pieceType ?? null,
     mood:             data.mood ?? null,
     respite:          data.respite ?? false,
+  contentFormat:    data.contentFormat ?? null,
     pullQuote:        data.pullQuote ?? null,
     studioWall:       data.studioWall ?? null,
     closingRitual:    data.closingRitual ?? null,
