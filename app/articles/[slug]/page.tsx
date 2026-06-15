@@ -101,7 +101,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         }
       `}</style>
 
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px 80px' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px 80px' }} data-reading-chamber>
 
         {/* ── Breadcrumb + issue tag ─────────────────────────────── */}
         <div style={{ padding: '28px 0 0', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -217,8 +217,8 @@ function StandardLayout({ article, config, publishedDate, markdownComponents }: 
 
       {article.heroImage && (
         <div style={{ margin: 'clamp(40px,5vw,72px) 0 clamp(32px,4vw,56px)' }}>
-          <div style={{ aspectRatio: '16/9', overflow: 'hidden' }}>
-            <img src={article.heroImage} alt={article.heroImageAlt} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          <div className="parallax-wrap" style={{ aspectRatio: '16/9' }}>
+            <img src={article.heroImage} alt={article.heroImageAlt} className="parallax-img" />
           </div>
           {article.heroImageCaption && <p style={{ fontFamily: 'var(--font-serif)', fontSize: '12px', fontStyle: 'italic', color: 'var(--ink-muted)', margin: '12px 0 0', lineHeight: 1.5, opacity: 0.8 }}>{article.heroImageCaption}</p>}
         </div>

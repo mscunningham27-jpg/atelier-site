@@ -96,7 +96,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         lora.variable,
       ].join(' ')}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <script src="/atelier-interactions.js" defer />
+      </body>
     </html>
   )
 }

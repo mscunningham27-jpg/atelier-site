@@ -165,3 +165,199 @@ input[type='email'] {
 }
 input[type='email']::placeholder { color: var(--ink-muted); opacity: 0.7; }
 input[type='email']:focus { border-color: var(--hearthgold); }
+/* ── Phase 6: Restrained Interactive Storytelling ────────────────── */
+
+/* ── 1. Scroll-reveal — section dividers and tableaux entries ────── */
+/*
+  Elements with .reveal start invisible and slightly low.
+  When .is-visible is added by the IntersectionObserver,
+  they fade in and lift. Duration: slow, like turning a page.
+*/
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger children inside a .reveal-group */
+.reveal-group > * {
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal-group.is-visible > *:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0ms;   }
+.reveal-group.is-visible > *:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 80ms;  }
+.reveal-group.is-visible > *:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 160ms; }
+.reveal-group.is-visible > *:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 240ms; }
+.reveal-group.is-visible > *:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 320ms; }
+
+/* ── 2. Reading progress — candleline ────────────────────────────── */
+/*
+  A fine gold hairline across the very top of the viewport.
+  Grows from left to right as the reader scrolls.
+  Set by JS: document.documentElement.style.setProperty('--scroll-pct', pct + '%')
+*/
+.candleline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--scroll-pct, 0%);
+  height: 1.5px;
+  background: var(--hearthgold);
+  z-index: 100;
+  opacity: 0.7;
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* ── 3. Annotation tooltips — Scripture, art, historical refs ────── */
+/*
+  Wrap a reference in <span class="annotation" data-note="...">
+  The tooltip appears on hover/focus above the word.
+  Stays within the reading column; accessible via keyboard.
+*/
+.annotation {
+  position: relative;
+  border-bottom: 0.5px dotted var(--hearthgold);
+  cursor: help;
+  color: inherit;
+}
+.annotation::after {
+  content: attr(data-note);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1C1008;
+  color: #E8DFC8;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  padding: 8px 12px;
+  white-space: normal;
+  width: max-content;
+  max-width: 260px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 20;
+}
+/* Hairline triangle pointing down */
+.annotation::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #1C1008;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 21;
+}
+.annotation:hover::after,
+.annotation:hover::before,
+.annotation:focus::after,
+.annotation:focus::before {
+  opacity: 1;
+}
+
+/* ── 4. Image parallax — hero images only ────────────────────────── */
+/*
+  Applied to .parallax-img wrapper. The img inside shifts slightly
+  on scroll via JS: element.style.setProperty('--parallax-y', offset + 'px')
+  Effect is subtle — max 20px travel. Museum-like, not cinematic.
+*/
+.parallax-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.parallax-img {
+  width: 100%;
+  height: 115%; /* extra height to allow shift without gaps */
+  object-fit: cover;
+  display: block;
+  transform: translateY(var(--parallax-y, 0px));
+  transition: transform 0.05s linear;
+  will-change: transform;
+}
+
+/* ── 5. Expandable image captions — curator notes ────────────────── */
+/*
+  .caption-expand: short visible text with a "More" toggle.
+  .caption-full: the full curator note, revealed on click.
+  Toggled by .is-expanded on the parent .caption-wrap.
+*/
+.caption-wrap { position: relative; }
+.caption-summary {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  margin: 10px 0 0;
+  opacity: 0.85;
+  cursor: pointer;
+  display: inline;
+}
+.caption-toggle {
+  font-family: var(--font-sans);
+  font-size: 8.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--hearthgold);
+  cursor: pointer;
+  margin-left: 8px;
+  border: none;
+  background: none;
+  padding: 0;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.caption-toggle:hover { opacity: 1; }
+.caption-full {
+  font-family: var(--font-serif);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--ink-muted);
+  line-height: 1.6;
+  margin: 6px 0 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+.caption-wrap.is-expanded .caption-full {
+  max-height: 200px;
+  opacity: 0.85;
+}
+.caption-wrap.is-expanded .caption-toggle {
+  opacity: 0.5;
+}
+
+/* ── Accessibility: respect reduced motion ───────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-group > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .candleline { transition: none; }
+  .parallax-img { transform: none; transition: none; }
+  .annotation::after,
+  .annotation::before { transition: none; }
+  .caption-full { transition: none; }
+}

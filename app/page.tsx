@@ -87,13 +87,14 @@ export default function HomePage() {
         {/* ── Issue Tableaux ─────────────────────────────────── */}
         <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 24px' }}>
           {tableaux.map(({ placement, article }, idx) => (
-            <TableauxEntry
-              key={article.slug}
-              article={article}
-              placement={placement!}
-              placementLabel={PLACEMENT_LABELS[placement!]}
-              idx={idx}
-            />
+            <div key={article.slug} className="reveal" style={{ transitionDelay: `${idx * 60}ms` }}>
+              <TableauxEntry
+                article={article}
+                placement={placement!}
+                placementLabel={PLACEMENT_LABELS[placement!]}
+                idx={idx}
+              />
+            </div>
           ))}
         </div>
 
