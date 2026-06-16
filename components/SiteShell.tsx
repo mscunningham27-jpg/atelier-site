@@ -3,6 +3,97 @@
 import Link from 'next/link'
 import { useEffect, useRef } from 'react'
 
+// ── Restrained interactions — wired here so they run after every React render ──
+function useAtelierInteractions() {
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    // 1. Scroll-reveal
+    const revealEls = document.querySelectorAll('.reveal, .reveal-group')
+    if (prefersReducedMotion) {
+      revealEls.forEach(el => el.classList.add('is-visible'))
+    } else {
+      const observer = new IntersectionObserver(
+        entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target) } }),
+        { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
+      )
+      revealEls.forEach(el => observer.observe(el))
+      return () => observer.disconnect()
+    }
+  }, [])
+
+  // 2. Candleline reading progress
+  useEffect(() => {
+    const article = document.querySelector('[data-reading-chamber]') as HTMLElement | null
+    if (!article) return
+    let line = document.querySelector('.candleline') as HTMLElement | null
+    if (!line) {
+      line = document.createElement('div')
+      line.className = 'candleline'
+      document.body.appendChild(line)
+    }
+    let ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        const top    = article.getBoundingClientRect().top + window.scrollY
+        const bottom = top + article.offsetHeight
+        const pct    = Math.min(100, Math.max(0, ((window.scrollY + window.innerHeight * 0.5 - top) / (bottom - top)) * 100))
+        document.documentElement.style.setProperty('--scroll-pct', pct.toFixed(1) + '%')
+        ticking = false
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      line?.remove()
+      document.documentElement.style.removeProperty('--scroll-pct')
+    }
+  }, [])
+
+  // 3. Parallax
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const wraps = document.querySelectorAll('.parallax-wrap')
+    if (!wraps.length) return
+    let ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        wraps.forEach(wrap => {
+          const img = wrap.querySelector('.parallax-img') as HTMLElement | null
+          if (!img) return
+          const rect   = wrap.getBoundingClientRect()
+          const offset = ((rect.top + rect.height / 2 - window.innerHeight / 2) / window.innerHeight) * 20
+          img.style.setProperty('--parallax-y', offset.toFixed(2) + 'px')
+        })
+        ticking = false
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // 4. Expandable captions
+  useEffect(() => {
+    const handlers: Array<[Element, EventListener]> = []
+    document.querySelectorAll('.caption-wrap').forEach(wrap => {
+      const toggle = wrap.querySelector('.caption-toggle')
+      if (!toggle) return
+      const handler: EventListener = () => {
+        const expanded = wrap.classList.toggle('is-expanded')
+        toggle.textContent = expanded ? 'Less' : 'More'
+        toggle.setAttribute('aria-expanded', String(expanded))
+      }
+      toggle.addEventListener('click', handler)
+      handlers.push([toggle, handler])
+    })
+    return () => handlers.forEach(([el, h]) => el.removeEventListener('click', h))
+  }, [])
+}
+
 const ATELIER_LETTERS = [
   { char: 'A', weight: 300, scale: 0.91, italic: false, offset: 3,  color: '#8C6830' },
   { char: 'T', weight: 700, scale: 1.07, italic: false, offset: 0,  color: '#1C1008' },
@@ -36,6 +127,7 @@ export default function SiteShell({
   mastheadState = 'condensed',
   issueLabel,
 }: SiteShellProps) {
+  useAtelierInteractions()
   return (
     <div style={{ backgroundColor: 'var(--parchment)', minHeight: '100vh' }}>
       {mastheadState === 'ceremonial' && (
