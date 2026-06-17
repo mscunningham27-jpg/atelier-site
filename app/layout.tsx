@@ -80,6 +80,16 @@ export const metadata: Metadata = {
     description: 'A faith-culture magazine for people who take both God and craft seriously.',
     siteName: 'The Atelier & The Altar',
   },
+  alternates: {
+    types: {
+      'application/rss+xml': [
+        {
+          url: 'https://www.atelierandaltar.com/feed.xml',
+          title: 'The Atelier & The Altar RSS Feed',
+        },
+      ],
+    },
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
