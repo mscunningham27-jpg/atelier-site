@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import {
   Cormorant_Garamond,
   Jost,
@@ -108,6 +109,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body>
         {children}
+        <Script
+          src="https://app.rybbit.io/api/script.js"
+          data-site-id="a82fabdcef64"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   )
